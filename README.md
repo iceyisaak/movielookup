@@ -14,24 +14,31 @@ This project allows you to:
 - Search movies by Title
   - Search Suggestions Menu
   - Search Results Page
-- Mark movies as favourite
+- Mark/unmark movies as favourite
   - Favourite Section + lists of favourited movies
-- Mark movies as watched / unwatched
+- Mark/unmark movies as watched / unwatched
   - Watched List
   - Unwatched List
-- Add movies to watchlists
+- Add movies to 1 or more watchlists
   - Named Watchlist
-  - Movies can be added to multiple watchlists
 
 
 
 ## How to run the project
+1. Download the repo to your machine
+2. Make sure you have the `APIKEY` generated from the OpenWeatherMap
+3. Create a `.env` file at `/project-folder` then add this line into it:
+```
+VITE_OMDB_APIKEY=paste-your-api-key-here
+```
+4. Run this command in your terminal `npm run dev`
+5. The terminal shows which port your localhost runs
+6. Enjoy :D
 
 ## Sources, Technologies, and Dependencies
 
 ### Sources
-
-
+[Favicon](https://www.svgrepo.com/svg/492625/movie)
 
 ### APIs
 [OMDB API](https://www.omdbapi.com/)
@@ -74,7 +81,4 @@ This project allows you to:
 
 ## Link to the Project
 [Project Repo](https://github.com/iceyisaak/movielookup)
-
-
-
 
