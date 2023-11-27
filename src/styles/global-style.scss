@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    * {
+        font-size: 62.5%;
+        scroll-behavior: smooth;
+        // overflow: hidden;
+    }
+
+    a.active {
+        // text-decoration: underline;
+        border-bottom: 0.25rem solid #000;
+    }
+
+
+}
