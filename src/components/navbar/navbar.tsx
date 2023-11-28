@@ -1,5 +1,3 @@
-
-
 import { Link } from 'react-router-dom'
 import style from './navbar.module.scss'
 
@@ -15,14 +13,14 @@ export const Navbar = () => {
             </article>
             <div className="flex">
                 {/* <SearchBar /> */}
-                <MenuToggler
+                {/* <MenuToggler
                 // handleOpenNavbar={handleOpenNavbar}
                 // isNavbarOpen={isNavbarOpen}
-                />
-                <NavMenu
+                /> */}
+                {/* <NavMenu
                 // handleNavLinkClicked={handleNavLinkClicked}
                 // isNavbarOpen={isNavbarOpen}
-                />
+                /> */}
             </div>
         </nav>
     )
