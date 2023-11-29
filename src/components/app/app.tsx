@@ -1,12 +1,15 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { RouterProvider } from "react-router-dom"
+import { RootRouter } from "../../routes"
 
 
 export const App = () => {
 
+    const queryClient = new QueryClient()
+
     return (
-        <>
-            <p className='text-red-600 text-4xl underline'>
-                Movie Lookup
-            </p>
-        </>
+        <QueryClientProvider client={queryClient}>
+            <RouterProvider router={RootRouter} />
+        </QueryClientProvider>
     )
 }

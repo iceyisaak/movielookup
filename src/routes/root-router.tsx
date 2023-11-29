@@ -8,6 +8,14 @@ export const RootRouter = createBrowserRouter(
 
         <Route path="/" element={< RootLayout />}>
             <Route index element={< Home />} />
+            <Route path="/results" element={< SearchResultsPage />} />
+            <Route path="/movie" element={< MoviePage />} />
+            <Route path="/marked/favourite" element={< FavouritePage />} />
+            <Route path="/marked/watched" element={< WatchlistPage />} />
+            <Route path="/watchlist" element={< WatchlistPage />} />
+
+
+
             <Route path="*" element={< Page404 />} />
         </Route>
     )
