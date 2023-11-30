@@ -12,6 +12,7 @@ export const SearchBar = () => {
 
     const searchCinemaHandler = (e: SyntheticEvent) => {
         e.preventDefault()
+
         console.log('searchCinemaHandler(): ', searchInput)
         // console.log('searchCinemaHandler()')
         console.log('SearchResult', SearchResult)
@@ -38,6 +39,7 @@ export const SearchBar = () => {
                 "
                 placeholder="e.g. Star Wars"
                 onChange={searchInputHandler}
+                value={searchInput}
             />
             {/* <SearchSuggestionMenu /> */}
             <button className="bg-orange-500 py-4 text-2xl my-3">

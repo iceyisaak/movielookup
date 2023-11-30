@@ -16,11 +16,10 @@ export const getSearchCinema = (SEARCH_TERM?: string, SEARCH_YEAR?: number, PAGE
     console.log('SEARCH_TERM: ', typeof SEARCH_TERM, SEARCH_TERM)
 
     const searchTermQuery = `${SEARCH_TERM ? `&s=${SEARCH_TERM}` : ''}`
-    const pageQuery = `${!PAGE_NUMBER ? `&page=1` : `&page=${PAGE_NUMBER}`}`
-    const searchYearQuery = `${!SEARCH_YEAR ? '' : `&y=${SEARCH_YEAR}`}`
+    const pageQuery = `${PAGE_NUMBER ? `&page=${PAGE_NUMBER}` : `&page=1`}`
+    const searchYearQuery = `${SEARCH_YEAR ? `&y=${SEARCH_YEAR}` : ''}`
 
     const APIURL = `${BASEURL}${APIKEY}${searchTermQuery}${pageQuery}${searchYearQuery}`
-    // ${searchTermQuery}${pageQuery}${searchYearQuery}
 
     console.log('APIURL: ', APIURL)
 
@@ -31,7 +30,7 @@ export const getSearchCinema = (SEARCH_TERM?: string, SEARCH_YEAR?: number, PAGE
             const data: unknown = await response.data
             return data as SearchResult
         },
-        enabled: SEARCH_TERM !== undefined && SEARCH_TERM !== '' && SEARCH_TERM !== null
+        enabled: SEARCH_TERM !== undefined && SEARCH_TERM !== ''
     })
 }
 
