@@ -5,12 +5,14 @@ import { APIKEY, BASEURL } from "./api-constant"
 
 
 type GetSearchCinema = {
-    SEARCH_TERM?: string,
+    SEARCH_TERM?: string | undefined,
     SEARCH_YEAR?: number,
     PAGE_NUMBER?: number,
 }
 
-export const getSearchCinema = ({ SEARCH_TERM, SEARCH_YEAR, PAGE_NUMBER }: GetSearchCinema) => {
+// export const getSearchCinema = ({ SEARCH_TERM, SEARCH_YEAR, PAGE_NUMBER }: GetSearchCinema) => {
+export const getSearchCinema = (SEARCH_TERM?: string, SEARCH_YEAR?: number, PAGE_NUMBER?: number) => {
+
 
     const searchTermQuery = `&s=${SEARCH_TERM}`
     const pageQuery = `&p=${PAGE_NUMBER}`
