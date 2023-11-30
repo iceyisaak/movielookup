@@ -29,11 +29,16 @@ export const getSearchCinema = ({ SEARCH_TERM, PAGE_NUMBER }: GetSearchCinema) =
 }
 
 
+type GetCinemaDetail = {
+    CINEMA_ID?: number,
+    PLOT_LENGTH?: 'short' | 'full'
+}
 
-export const getCinemaDetail = (CINEMA_ID?: number, plotLength?: 'short' | 'long') => {
+
+export const getCinemaDetail = ({ CINEMA_ID, PLOT_LENGTH }: GetCinemaDetail) => {
 
     const cinemaQuery = `&t=${CINEMA_ID}`
-    const plotLengthQuery = `&plot=${plotLength}`
+    const plotLengthQuery = `&plot=${PLOT_LENGTH}`
     const APIURL = `${BASEURL}${APIKEY}${cinemaQuery}${plotLengthQuery}`
 
     return useQuery({
