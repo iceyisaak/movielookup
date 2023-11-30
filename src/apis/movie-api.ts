@@ -6,19 +6,22 @@ import { APIKEY, BASEURL } from "./api-constant"
 
 type GetSearchCinema = {
     SEARCH_TERM?: string,
-    PAGE_NUMBER?: number
+    SEARCH_YEAR?: number,
+    PAGE_NUMBER?: number,
 }
 
-export const getSearchCinema = ({ SEARCH_TERM, PAGE_NUMBER }: GetSearchCinema) => {
+export const getSearchCinema = ({ SEARCH_TERM, SEARCH_YEAR, PAGE_NUMBER }: GetSearchCinema) => {
 
-    const searchQuery = `&s=${SEARCH_TERM}`
+    const searchTermQuery = `&s=${SEARCH_TERM}`
     const pageQuery = `&p=${PAGE_NUMBER}`
+    const searchYearQuery = `&y=${SEARCH_YEAR}`
+
 
     const APINAME = 'search-movies'
-    const APIURL = `${BASEURL}${APIKEY}${searchQuery}${pageQuery}`
+    const APIURL = `${BASEURL}${APIKEY}${searchTermQuery}${searchYearQuery}${pageQuery}`
 
     return useQuery({
-        queryKey: [APINAME, PAGE_NUMBER],
+        queryKey: [APINAME, PAGE_NUMBER, SEARCH_YEAR],
         queryFn: async () => {
             const response = await axios.get(APIURL)
             const data: unknown = await response.data
