@@ -4,16 +4,7 @@ import type { CinemaDetail, SearchResult } from "../types"
 import { APIKEY, BASEURL } from "./api-constant"
 
 
-// type GetSearchCinema = {
-//     SEARCH_TERM?: string | undefined,
-//     SEARCH_YEAR?: number,
-//     PAGE_NUMBER?: number,
-// }
-
-// export const getSearchCinema = ({ SEARCH_TERM, SEARCH_YEAR, PAGE_NUMBER }: GetSearchCinema) => {
 export const getSearchCinema = (SEARCH_TERM?: string, SEARCH_YEAR?: number, PAGE_NUMBER?: number) => {
-
-    console.log('SEARCH_TERM: ', typeof SEARCH_TERM, SEARCH_TERM)
 
     const searchTermQuery = `${SEARCH_TERM ? `&s=${SEARCH_TERM}` : ''}`
     const pageQuery = `${PAGE_NUMBER ? `&page=${PAGE_NUMBER}` : `&page=1`}`
@@ -35,13 +26,8 @@ export const getSearchCinema = (SEARCH_TERM?: string, SEARCH_YEAR?: number, PAGE
 }
 
 
-type GetCinemaDetail = {
-    CINEMA_ID?: number,
-    PLOT_LENGTH?: 'short' | 'full'
-}
 
-
-export const getCinemaDetail = ({ CINEMA_ID, PLOT_LENGTH }: GetCinemaDetail) => {
+export const getCinemaDetail = ( CINEMA_ID?:number, PLOT_LENGTH?:'short' | 'full') => {
 
     const cinemaQuery = `&t=${CINEMA_ID}`
     const plotLengthQuery = `&plot=${PLOT_LENGTH}`

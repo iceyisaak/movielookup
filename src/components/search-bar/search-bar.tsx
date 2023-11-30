@@ -5,14 +5,13 @@ import { getSearchCinema } from "../../apis/movie-api"
 export const SearchBar = () => {
 
     const [searchInput, setSearchInput] = useState('')
-
     const { data: SearchResult } = getSearchCinema(searchInput)
 
 
 
     const searchCinemaHandler = (e: SyntheticEvent) => {
         e.preventDefault()
-
+        if (searchInput === '') return
         console.log('searchCinemaHandler(): ', searchInput)
         // console.log('searchCinemaHandler()')
         console.log('SearchResult', SearchResult)
