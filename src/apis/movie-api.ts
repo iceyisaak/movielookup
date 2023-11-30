@@ -1,28 +1,49 @@
 import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
-import { SearchResult } from "../types/search-result"
+import type { CinemaDetail, SearchResult } from "../types"
 import { APIKEY, BASEURL } from "./api-constant"
 
 
 type GetSearchCinema = {
-    searchTerm: string
+    SEARCH_TERM?: string,
+    PAGE_NUMBER?: number
 }
 
+export const getSearchCinema = ({ SEARCH_TERM, PAGE_NUMBER }: GetSearchCinema) => {
 
-export const getSearchCinema = ({ searchTerm }: GetSearchCinema) => {
-
-    const searchQuery = `&s=${searchTerm}`
+    const searchQuery = `&s=${SEARCH_TERM}`
+    const pageQuery = `&p=${PAGE_NUMBER}`
 
     const APINAME = 'search-movies'
-    const APIURL = `${BASEURL}${APIKEY}${searchQuery}`
+    const APIURL = `${BASEURL}${APIKEY}${searchQuery}${pageQuery}`
 
     return useQuery({
-        queryKey: [APINAME],
+        queryKey: [APINAME, PAGE_NUMBER],
         queryFn: async () => {
             const response = await axios.get(APIURL)
             const data: unknown = await response.data
             return data as SearchResult
         },
-        enabled: searchTerm !== undefined && searchTerm !== ''
+        enabled: SEARCH_TERM !== undefined && SEARCH_TERM !== ''
     })
+}
+
+
+
+export const getCinemaDetail = (CINEMA_ID?: number, plotLength?: 'short' | 'long') => {
+
+    const cinemaQuery = `&t=${CINEMA_ID}`
+    const plotLengthQuery = `&plot=${plotLength}`
+    const APIURL = `${BASEURL}${APIKEY}${cinemaQuery}${plotLengthQuery}`
+
+    return useQuery({
+        queryKey: [CINEMA_ID],
+        queryFn: async () => {
+            const response = await axios.get(APIURL)
+            const data: unknown = await response.data
+            return data as CinemaDetail
+        },
+        enabled: CINEMA_ID !== undefined
+    })
+
 }
