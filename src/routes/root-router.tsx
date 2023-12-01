@@ -1,6 +1,6 @@
 import { Route, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
 import { RootLayout } from "../layouts";
-import { Home, Page404 } from "../pages";
+import { Home, Page404, ResultPage } from "../pages";
 
 
 export const RootRouter = createBrowserRouter(
@@ -10,7 +10,7 @@ export const RootRouter = createBrowserRouter(
             <Route index element={< Home />} />
 
 
-            {/* <Route path="results" element={< SearchResultsPage />} /> */}
+            <Route path="results" element={< ResultPage />} />
 
             {/* <Route path="movie" element={< MoviePage />} /> */}
             {/* <Route path="movie/:movieId" element={< MoviePage />} /> */}
