@@ -3,6 +3,8 @@ import { getSearchCinema } from "../../apis/movie-api"
 import { SearchResult } from "../../types"
 import { SearchSuggestionMenu } from "./search-suggestion-menu/search-suggestion-menu"
 
+import { GrClose } from "react-icons/gr";
+
 export const SearchForm = () => {
 
     const inputRef = useRef<HTMLInputElement>(null)
@@ -24,6 +26,10 @@ export const SearchForm = () => {
 
     const showSuggestionMenuHandler = () => {
         setShowSuggestionMenu(!showSuggestionMenu)
+    }
+
+    const clearInputHandler = () => {
+        setSearchInput('')
     }
 
     const itemClickHandler = (urlPath: string) => () => {
@@ -69,6 +75,16 @@ export const SearchForm = () => {
                     onBlur={inputBlurHandler}
                     value={searchInput}
                 />
+                {
+                    searchInput !== ''
+                    &&
+                    <GrClose
+                        className={`
+                        w-12 h-12 absolute
+                        `}
+                        onClick={clearInputHandler}
+                    />
+                }
             </div>
             {
                 searchInput !== '' &&
