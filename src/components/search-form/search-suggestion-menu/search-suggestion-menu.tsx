@@ -24,9 +24,9 @@ export const SearchSuggestionMenu = ({ data, itemClickHandler }: SearchSuggestio
                         >
                             <img
                                 src={
-                                    cinema.Poster ?
-                                        cinema.Poster :
-                                        `https://fakeimg.pl/90x135?text=N/A`
+                                    cinema.Poster === 'N/A' ?
+                                        `https://placehold.co/90x135?text=N/A` :
+                                        cinema.Poster
                                 }
                                 alt={cinema.Title}
                                 className="w-36"
