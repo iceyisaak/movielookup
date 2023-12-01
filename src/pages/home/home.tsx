@@ -1,4 +1,4 @@
-import { SearchBar } from "../../components/search-bar";
+import { SearchForm } from "../../components/search-form";
 
 import { RiMovie2Line } from "react-icons/ri";
 
@@ -13,7 +13,7 @@ export const Home = () => {
                     Movie Lookup <RiMovie2Line />
                 </h1>
                 <RiMovie2Line />
-                <SearchBar />
+                <SearchForm />
             </div>
         </article>
     )

@@ -11,7 +11,7 @@ export const Navbar = () => {
                     Movie Lookup
                 </Link>
             </article>
-            <div className="flex bg-green-300 w-6/12 justify-around items-center">
+            <div className="flex bg-green-300 w-3/12 justify-around items-center">
                 {/* <SearchBar /> */}
                 {/* <MenuToggler
                 // handleOpenNavbar={handleOpenNavbar}
@@ -21,17 +21,17 @@ export const Navbar = () => {
                 // handleNavLinkClicked={handleNavLinkClicked}
                 // isNavbarOpen={isNavbarOpen}
                 /> */}
-                <div className='bg-blue-500'>
+                {/* <div className='bg-blue-500'>
                     SearchBar
-                </div>
-                <div className='bg-orange-400'>
-                    <span className='mx-5'>
-                        Watched
-                    </span>
-                    <span>
-                        Watchlist
-                    </span>
-                </div>
+                </div> */}
+                {/* <div className='bg-orange-400'> */}
+                <span className='mx-5 bg-purple-500'>
+                    Watched
+                </span>
+                <span className='bg-purple-500'>
+                    Watchlist
+                </span>
+                {/* </div> */}
             </div>
         </nav>
     )
