@@ -1,28 +1,32 @@
 import { Route, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
-import { RootLayout } from "../layouts";
-import { Home, Page404, ResultPage } from "../pages";
+import { HomeLayout, RootLayout } from "../layouts";
+import { DetailPage, FavouritePage, Home, Page404, ResultPage, WatchedPage, WatchlistPage } from "../pages";
+import { MarkedPage } from "../pages/marked-page";
 
 
 export const RootRouter = createBrowserRouter(
     createRoutesFromElements(
 
-        <Route path="/" element={< RootLayout />}>
+        <Route path="/" element={< HomeLayout />}>
             <Route index element={< Home />} />
 
+            <Route element={< RootLayout />} >
+                <Route path="results" element={< ResultPage />} />
 
-            <Route path="results" element={< ResultPage />} />
+                <Route path="marked" element={<MarkedPage />}>
+                    <Route index path="favourite" element={< FavouritePage />} />
+                    <Route path="watched" element={< WatchedPage />} />
+                    <Route path="watchlist" element={< WatchlistPage />} />
+                </Route>
 
-            {/* <Route path="movie" element={< MoviePage />} /> */}
-            {/* <Route path="movie/:movieId" element={< MoviePage />} /> */}
+                <Route path="cinema">
+                    <Route index path=":cinemaId" element={< DetailPage />} />
+                </Route>
 
+            </Route>
 
-            {/* <Route path="marked" element={< FavouritePage />} /> */}
-            {/* <Route path="marked/favourite" element={< FavouritePage />} /> */}
-            {/* <Route path="marked/watched" element={< WatchlistPage />} /> */}
-            {/* <Route path="marked/watchlist" element={< WatchlistPage />} /> */}
-
-            <Route path="*" element={< Page404 />} />
-        </Route>
+            < Route path="*" element={< Page404 />} />
+        </Route >
 
     )
 )

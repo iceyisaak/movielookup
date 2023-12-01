@@ -1,3 +1,7 @@
 export { Home } from './home'
 export { Page404 } from './page404'
 export { ResultPage } from './result-page'
+export { FavouritePage } from './favourite-page'
+export { DetailPage } from './detail-page'
+export { WatchedPage } from './watched-page'
+export { WatchlistPage } from './watchlist-page'

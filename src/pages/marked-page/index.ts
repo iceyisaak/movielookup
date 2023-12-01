@@ -1,0 +1,1 @@
+export { MarkedPage } from './marked-page'
