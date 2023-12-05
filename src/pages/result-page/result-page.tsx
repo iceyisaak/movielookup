@@ -11,9 +11,10 @@ export const ResultPage = () => {
 
 
     const [searchParams, setSearchParams] = useSearchParams()
-    const [reseultPage, setResultPage] = useState(1)
-    const searchParamsString = searchParams.get('query')?.toString()
-    const { data: SearchResult } = getSearchCinema(searchParamsString, reseultPage)
+    const [resultPage, setResultPage] = useState('1')
+    const searchTitleString = searchParams.get('query')?.toString()
+    const searchPageString = searchParams.set('page', resultPage)
+    const { data: SearchResult } = getSearchCinema(searchTitleString, +searchPageString)
 
 
     return (
@@ -32,7 +33,7 @@ export const ResultPage = () => {
 
             <article className="mb-5 px-5">
                 <h2 className="text-4xl">
-                    Search Results for: {searchParamsString}
+                    Search Results for: {searchTitleString}
                 </h2>
                 <p>
                     Found: {SearchResult?.totalResults} Cinema(s)
