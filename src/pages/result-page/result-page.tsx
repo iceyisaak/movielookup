@@ -39,8 +39,11 @@ export const ResultPage = () => {
                 </p>
             </article>
 
-            <article className="">
-                <div className='flex flex-wrap justify-center max-w-[800rem]'>
+            <article className="flex justify-center">
+                <div className='flex flex-wrap justify-center bg-red-200
+                w-[auto]
+                sm:w-[120rem]
+                '>
                     {SearchResult?.Search.map((cinema) => (
                         <div key={cinema.imdbID} className="mx-2 my-2 bg-orange-300 w-80 relative">
                             <div className="inline-flex">
@@ -75,6 +78,10 @@ export const ResultPage = () => {
                         </div>
                     ))}
                 </div>
+            </article>
+
+            <article className="flex justify-center mt-40">
+                [PAGINATION PANEL]
             </article>
 
         </section>
