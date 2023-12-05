@@ -4,15 +4,16 @@ import { useSearchParams } from "react-router-dom";
 import { getSearchCinema } from "../../apis/movie-api";
 
 import { MdPlaylistAdd } from "react-icons/md";
-import { PiCheckCircleThin } from "react-icons/pi";
+import { useState } from "react";
 
 
 export const ResultPage = () => {
 
 
     const [searchParams, setSearchParams] = useSearchParams()
+    const [reseultPage, setResultPage] = useState(1)
     const searchParamsString = searchParams.get('query')?.toString()
-    const { data: SearchResult } = getSearchCinema(searchParamsString)
+    const { data: SearchResult } = getSearchCinema(searchParamsString, reseultPage)
 
 
     return (
@@ -53,7 +54,7 @@ export const ResultPage = () => {
                                     className='w-80 h-full'
                                 />
                             </div>
-                            <div className="px-1 pb-5">
+                            <div className="px-1 pb-5 relative">
                                 <div className="flex flex-wrap">
                                     <h1 className="text-3xl font-bold break-words">
                                         {cinema.Title}
@@ -66,7 +67,7 @@ export const ResultPage = () => {
                                     {cinema.Year}
                                 </p>
                             </div>
-                            <span className="absolute right-0 bottom-0 flex">
+                            <span className="absolute right-1 bottom-0 flex">
                                 <MdPlaylistAdd size={20} />
                                 {/* <PiCheckCircleThin size={20} /> */}
                             </span>
