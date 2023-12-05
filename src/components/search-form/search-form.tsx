@@ -1,7 +1,7 @@
-import { ChangeEvent, SyntheticEvent, useRef, useState } from "react"
-import { getSearchCinema } from "../../apis/movie-api"
-import { SearchResult } from "../../types"
-import { SearchSuggestionMenu } from "./search-suggestion-menu/search-suggestion-menu"
+import { ChangeEvent, SyntheticEvent, useRef, useState } from "react";
+import { getSearchCinema } from "../../apis/movie-api";
+import { SearchResult } from "../../types";
+import { SearchSuggestionMenu } from "./search-suggestion-menu/search-suggestion-menu";
 
 import { GrClose } from "react-icons/gr";
 
@@ -58,16 +58,17 @@ export const SearchForm = () => {
 
     return (
         <form onSubmit={searchCinemaHandler} className="w-full flex flex-col relative">
-            <div>
+            <div className="flex relative">
                 <input
                     ref={inputRef}
                     type="text"
                     className="
-                    w-full
-                    bg-gray-300
-                    px-2
-                    h-14
-                    text-2xl
+
+                        w-full
+                        bg-gray-300
+                        px-2
+                        h-14
+                        text-2xl
                     "
                     placeholder="e.g. Star Wars"
                     onChange={searchInputHandler}
@@ -75,17 +76,17 @@ export const SearchForm = () => {
                     onBlur={inputBlurHandler}
                     value={searchInput}
                 />
-                {
-                    searchInput !== ''
-                    &&
-                    <GrClose
-                        className={`
-                        w-12 h-12 absolute
-                        `}
-                        onClick={clearInputHandler}
-                    />
-                }
             </div>
+            {
+                searchInput !== ''
+                &&
+                <GrClose
+                    className={`
+                        w-12 h-12 absolute right-4 top-1
+                        `}
+                    onClick={clearInputHandler}
+                />
+            }
             {
                 searchInput !== '' &&
                 inputFocus &&
