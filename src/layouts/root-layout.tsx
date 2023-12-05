@@ -7,7 +7,7 @@ export const RootLayout = () => {
         <>
             <ScrollRestoration />
             <Navbar />
-            <main className="h-screen">
+            <main className="">
                 <Outlet />
             </main>
             <Footer />

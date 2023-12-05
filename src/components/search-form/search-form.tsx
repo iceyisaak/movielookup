@@ -4,6 +4,7 @@ import { SearchResult } from "../../types";
 import { SearchSuggestionMenu } from "./search-suggestion-menu/search-suggestion-menu";
 
 import { GrClose } from "react-icons/gr";
+import { createSearchParams, useNavigate } from "react-router-dom";
 
 export const SearchForm = () => {
 
@@ -11,6 +12,7 @@ export const SearchForm = () => {
     const [searchInput, setSearchInput] = useState('')
     const [inputFocus, setInputFocus] = useState(false)
     const [showSuggestionMenu, setShowSuggestionMenu] = useState(false)
+    const navigate = useNavigate()
 
     const { data: SearchResult } = getSearchCinema(searchInput)
 
@@ -40,10 +42,16 @@ export const SearchForm = () => {
 
     const searchCinemaHandler = (e: SyntheticEvent) => {
         e.preventDefault()
+        inputRef.current?.blur()
+
         if (searchInput === '') return
-        console.log('searchCinemaHandler(): ', searchInput)
-        // console.log('searchCinemaHandler()')
-        // console.log('SearchResult', SearchResult)
+
+        return navigate({
+            pathname: '/results',
+            search: createSearchParams({
+                query: searchInput
+            }).toString()
+        })
     }
 
     const searchInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -63,7 +71,6 @@ export const SearchForm = () => {
                     ref={inputRef}
                     type="text"
                     className="
-
                         w-full
                         bg-gray-300
                         px-2
