@@ -11,9 +11,9 @@ export const ResultPage = () => {
 
 
     const [searchParams, setSearchParams] = useSearchParams()
-    const [resultPage, setResultPage] = useState('1')
+    const [resultPage, setResultPage] = useState(1)
     const searchTitleString = searchParams.get('query')?.toString()
-    const searchPageString = searchParams.set('page', resultPage)
+    const searchPageString = searchParams.set('page', resultPage.toString())
     const { data: SearchResult } = getSearchCinema(searchTitleString, +searchPageString)
 
 
@@ -22,8 +22,9 @@ export const ResultPage = () => {
             <article className="flex justify-center bg-blue-600 mb-10">
                 <div className="w-8/12 bg-red-400 flex">
                     <input
-                        value={'Search Bar'}
+                        // value={'Search Bar'}
                         className="w-10/12 h-16 px-2 rounded-md text-xl"
+                        placeholder="e.g. Titanic"
                     />
                     <button className="bg-gray-300 w-2/12 mx-2 rounded-md text-xl">
                         LookUp
