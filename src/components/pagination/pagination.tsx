@@ -1,6 +1,6 @@
-import { PaginationItem } from './pagination-item'
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi2";
 import { LuChevronFirst, LuChevronLast } from "react-icons/lu";
+import { PaginationItem } from './pagination-item';
 
 
 type Pagination = {
@@ -54,6 +54,29 @@ export const Pagination = ({ currentPage, total, limit, onPageChange }: Paginati
 
 
 
+
+    const getFirstPageHandler = () => {
+        onPageChange(1)
+    }
+
+    const getLastPageHandler = () => {
+        onPageChange(pagesCount)
+    }
+
+    const getPrevPageHandler = (currentPage: number) => {
+        if (currentPage > 0) {
+            onPageChange(currentPage - 1)
+        }
+    }
+
+    const getNextPageHandler = (currentPage: number) => {
+        if (currentPage < pagesCount) {
+            onPageChange(currentPage + 1)
+        }
+    }
+
+
+
     return (
         <article className="flex justify-center mt-40">
             <ul className="flex">
@@ -61,14 +84,15 @@ export const Pagination = ({ currentPage, total, limit, onPageChange }: Paginati
                 <PaginationItem
                     text={<LuChevronFirst size={20} />}
                     currentPage={currentPage}
-                    onPageChange={() => onPageChange(1)}
+                    onPageChange={getFirstPageHandler}
                     isDisabled={isFirstPage}
                 />
 
                 <PaginationItem
                     text={<HiOutlineChevronLeft size={20} />}
                     currentPage={currentPage}
-                    onPageChange={() => onPageChange(currentPage - 1)}
+                    onPageChange={getPrevPageHandler}
+                    isDisabled={isFirstPage}
                 />
 
                 {pages.map((page) => (
@@ -83,14 +107,14 @@ export const Pagination = ({ currentPage, total, limit, onPageChange }: Paginati
                 <PaginationItem
                     text={<HiOutlineChevronRight size={20} />}
                     currentPage={currentPage}
-                    onPageChange={() => onPageChange(currentPage + 1)}
+                    onPageChange={getNextPageHandler}
                     isDisabled={isLastPage}
                 />
 
                 <PaginationItem
                     text={<LuChevronLast size={20} />}
                     currentPage={currentPage}
-                    onPageChange={() => onPageChange(pagesCount)}
+                    onPageChange={getLastPageHandler}
                     isDisabled={isLastPage}
                 />
 

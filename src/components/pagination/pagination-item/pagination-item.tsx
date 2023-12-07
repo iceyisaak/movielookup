@@ -16,9 +16,8 @@ type PaginationItem = {
 
 export const PaginationItem = ({ page, currentPage, onPageChange, isDisabled, text }: PaginationItem) => {
     const liClasses = cx({
-        // "page-item": true,
         [`${style['active']}`]: page === currentPage,
-        disabled: isDisabled,
+        [`${style['disabled']}`]: isDisabled,
     });
     return (
         <li className='flex' onClick={() => onPageChange(page!)}>

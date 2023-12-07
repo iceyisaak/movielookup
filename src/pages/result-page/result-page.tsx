@@ -19,6 +19,11 @@ export const ResultPage = () => {
 
     const [currentPage, setCurrentPage] = useState(24)
 
+    const onPageChangeHandler = (page: number) => {
+
+        setCurrentPage(page)
+    }
+
 
     return (
         <section className="w-screen bg-green-400 pt-32 pb-52">
@@ -89,7 +94,7 @@ export const ResultPage = () => {
                 currentPage={currentPage}
                 total={480}
                 limit={20}
-                onPageChange={(page) => setCurrentPage(page)}
+                onPageChange={onPageChangeHandler}
             />
 
         </section>
