@@ -55,29 +55,22 @@ export const Pagination = ({ currentPage, total, limit, onPageChange }: Paginati
 
 
     useEffect(() => {
-        // updateResultPageQuery()
-        pageParams.set("page", currentPage.toString())
-        setPageParams(pageParams)
+        updateResultPageQuery()
     }, [currentPage])
 
 
     const updateResultPageQuery = () => {
-        // pageParams.set("page", currentPage.toString())
-        // setPageParams(pageParams)
+        pageParams.set("page", currentPage.toString())
+        setPageParams(pageParams)
     }
 
 
 
     const getFirstPageHandler = () => {
-        // onPageChange(1)
-        console.log('getFirstPageHandler()', pageParams)
-        // pageParams.set('page', (1).toString())
         onPageChange(1)
     }
 
     const getLastPageHandler = () => {
-        console.log('getLastPageHandler()')
-        // pageParams.set('page', (pagesCount).toString())
         onPageChange(pagesCount)
     }
 
@@ -88,7 +81,6 @@ export const Pagination = ({ currentPage, total, limit, onPageChange }: Paginati
     }
 
     const getNextPageHandler = () => {
-        console.log(currentPage)
         if (currentPage < pagesCount) {
             onPageChange(currentPage + 1)
         }
