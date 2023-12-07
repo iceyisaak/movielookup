@@ -30,8 +30,8 @@ export const Pagination = ({ currentPage, total, limit, onPageChange }: Paginati
     const getPagesCut = ({ pagesCount, pagesCutCount, currentPage }: GetPagesCut) => {
         const ceiling = Math.ceil(pagesCutCount / 2);
         const floor = Math.floor(pagesCutCount / 2);
-        console.log("ceiling", ceiling);
-        console.log("floor", floor);
+        // console.log("ceiling", ceiling);
+        // console.log("floor", floor);
 
         if (pagesCount < pagesCutCount) {
             return { start: 1, end: pagesCount + 1 };

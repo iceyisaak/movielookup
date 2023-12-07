@@ -21,9 +21,7 @@ export const PaginationItem = ({ page, currentPage, onPageChange, isDisabled, te
     });
 
     const getSelectedPageHandler = () => {
-        if (page) {
-            onPageChange(page!)
-        }
+        onPageChange(page!)
     }
 
     return (
