@@ -1,10 +1,11 @@
 // import { SearchBar } from "../../components/search-form"
 
+import classNames from 'classnames';
 import { useSearchParams } from "react-router-dom";
 import { getSearchCinema } from "../../apis/movie-api";
 
-import { MdPlaylistAdd } from "react-icons/md";
 import { useState } from "react";
+import { MdPlaylistAdd } from "react-icons/md";
 
 
 export const ResultPage = () => {
@@ -15,6 +16,76 @@ export const ResultPage = () => {
     const searchTitleString = searchParams.get('query')?.toString()
     const searchPageString = searchParams.set('page', resultPage.toString())
     const { data: SearchResult } = getSearchCinema(searchTitleString, +searchPageString)
+
+    const [currentPage, setCurrentPage] = useState(24)
+
+
+
+    const total = 480
+    const limit = 20
+    const onPageChange = (page: number) => setCurrentPage(page)
+
+
+
+    const range = (start: number, end: number) => {
+        return [...Array(end - start).keys()].map((el) => el + start);
+    };
+
+    type GetPagesCut = {
+        pagesCount: number,
+        pagesCutCount: number,
+        currentPage: number
+    }
+
+    const getPagesCut = ({ pagesCount, pagesCutCount, currentPage }: GetPagesCut) => {
+        const ceiling = Math.ceil(pagesCutCount / 2);
+        const floor = Math.floor(pagesCutCount / 2);
+        console.log("ceiling", ceiling);
+        console.log("floor", floor);
+
+        if (pagesCount < pagesCutCount) {
+            return { start: 1, end: pagesCount + 1 };
+        } else if (currentPage >= 1 && currentPage <= ceiling) {
+            return { start: 1, end: pagesCutCount + 1 };
+        } else if (currentPage + floor >= pagesCount) {
+            return { start: pagesCount - pagesCutCount + 1, end: pagesCount + 1 };
+        } else {
+            return { start: currentPage - ceiling + 1, end: currentPage + floor + 1 };
+        }
+    };
+
+    type PaginationItem = {
+        text?: string,
+        page?: number,
+        currentPage: number,
+        onPageChange: (page: number) => void,
+        isDisabled?: boolean
+    }
+
+    const PaginationItem = ({ page, currentPage, onPageChange, isDisabled, text }: PaginationItem) => {
+        const liClasses = classNames({
+            "page-item": true,
+            active: page === currentPage,
+            disabled: isDisabled,
+        });
+        return (
+            <li className={liClasses} onClick={() => onPageChange(page!)}>
+                <span className="page-link">{page ? page : text}</span>
+            </li>
+        );
+    };
+
+
+    const pagesCount = Math.ceil(total / limit);
+    const pagesCut = getPagesCut({ pagesCount, pagesCutCount: 10, currentPage });
+    const pages = range(pagesCut.start, pagesCut.end);
+    const isFirstPage = currentPage === 1;
+    const isLastPage = currentPage === pagesCount;
+
+    console.log('currentPage', currentPage)
+    console.log('pages.length', pages.length)
+    console.log('pagesCut.end', pagesCut.end)
+
 
 
     return (
@@ -83,7 +154,45 @@ export const ResultPage = () => {
             </article>
 
             <article className="flex justify-center mt-40">
-                [PAGINATION PANEL]
+                <ul className="flex">
+
+                    <PaginationItem
+                        text={'First'}
+                        currentPage={currentPage}
+                        onPageChange={() => onPageChange(1)}
+                        isDisabled={isFirstPage}
+                    />
+
+                    <PaginationItem
+                        text={'Prev'}
+                        currentPage={currentPage}
+                        onPageChange={() => onPageChange(currentPage - 1)}
+                    />
+
+                    {pages.map((page) => (
+                        <PaginationItem
+                            page={page}
+                            key={page}
+                            currentPage={currentPage}
+                            onPageChange={onPageChange}
+                        />
+                    ))}
+
+                    <PaginationItem
+                        text={'Next'}
+                        currentPage={currentPage}
+                        onPageChange={() => onPageChange(currentPage + 1)}
+                        isDisabled={isLastPage}
+                    />
+
+                    <PaginationItem
+                        text={'Last'}
+                        currentPage={currentPage}
+                        onPageChange={() => onPageChange(pagesCount)}
+                        isDisabled={isLastPage}
+                    />
+
+                </ul>
             </article>
 
         </section>

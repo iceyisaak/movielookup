@@ -12,7 +12,7 @@ export const getSearchCinema = (SEARCH_TERM?: string, PAGE_NUMBER?: number, SEAR
 
     const APIURL = `${BASEURL}${APIKEY}${searchTermQuery}${pageQuery}${searchYearQuery}`
 
-    console.log('APIURL: ', APIURL)
+    // console.log('APIURL: ', APIURL)
 
     return useQuery({
         queryKey: [SEARCH_TERM, PAGE_NUMBER, SEARCH_YEAR],
