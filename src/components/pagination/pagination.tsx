@@ -2,6 +2,7 @@ import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi2";
 import { LuChevronFirst, LuChevronLast } from "react-icons/lu";
 import { useSearchParams } from "react-router-dom";
 import { PaginationItem } from './pagination-item';
+import { useEffect } from "react";
 
 
 type Pagination = {
@@ -13,8 +14,8 @@ type Pagination = {
 
 export const Pagination = ({ currentPage, total, limit, onPageChange }: Pagination) => {
 
-    const [pageParams, setPageParams] = useSearchParams(currentPage.toString())
-    const searchPageString = pageParams.get('page')
+    const [pageParams, setPageParams] = useSearchParams()
+    // const searchPageString = pageParams.get('page')
 
 
     const range = (start: number, end: number) => {
@@ -53,17 +54,30 @@ export const Pagination = ({ currentPage, total, limit, onPageChange }: Paginati
     const isLastPage = currentPage === pagesCount;
 
 
+    useEffect(() => {
+        // updateResultPageQuery()
+        pageParams.set("page", currentPage.toString())
+        setPageParams(pageParams)
+    }, [currentPage])
+
+
+    const updateResultPageQuery = () => {
+        // pageParams.set("page", currentPage.toString())
+        // setPageParams(pageParams)
+    }
+
+
 
     const getFirstPageHandler = () => {
         // onPageChange(1)
         console.log('getFirstPageHandler()', pageParams)
-        pageParams.set('page', (1).toString())
+        // pageParams.set('page', (1).toString())
         onPageChange(1)
     }
 
     const getLastPageHandler = () => {
         console.log('getLastPageHandler()')
-        pageParams.set('page', (pagesCount).toString())
+        // pageParams.set('page', (pagesCount).toString())
         onPageChange(pagesCount)
     }
 
@@ -89,12 +103,16 @@ export const Pagination = ({ currentPage, total, limit, onPageChange }: Paginati
                 <LuChevronFirst
                     size={20}
                     onClick={getFirstPageHandler}
+                    className={
+                        ``
+                    }
                     isDisabled={isFirstPage}
                 />
 
                 <HiOutlineChevronLeft
                     size={20}
                     onClick={getPrevPageHandler}
+                    isDisabled={isFirstPage}
                 />
 
                 {pages.map((page) => (
