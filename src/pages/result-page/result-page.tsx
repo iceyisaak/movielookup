@@ -13,16 +13,18 @@ export const ResultPage = () => {
 
     const [searchParams, setSearchParams] = useSearchParams()
     const [resultPage, setResultPage] = useState(1)
-    const searchTitleString = searchParams.get('query')?.toString()
-    const searchPageString = searchParams.set('page', resultPage.toString())
-    const { data: SearchResult } = getSearchCinema(searchTitleString, +searchPageString)
+    const searchTitleString = searchParams.get('title')?.toString()
+    const searchPageString = searchParams.get('page')
+    const [currentPage, setCurrentPage] = useState(+searchPageString!)
+    const { data: SearchResult } = getSearchCinema(searchTitleString, +currentPage)
 
-    const [currentPage, setCurrentPage] = useState(24)
 
     const onPageChangeHandler = (page: number) => {
-
         setCurrentPage(page)
     }
+
+    // console.log('totalResults:', SearchResult?.totalResults)
+    console.log('SearchResults: ', SearchResult)
 
 
     return (
@@ -92,8 +94,8 @@ export const ResultPage = () => {
 
             <Pagination
                 currentPage={currentPage}
-                total={480}
-                limit={20}
+                total={+SearchResult?.totalResults!}
+                limit={10}
                 onPageChange={onPageChangeHandler}
             />
 

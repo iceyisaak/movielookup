@@ -1,5 +1,6 @@
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi2";
 import { LuChevronFirst, LuChevronLast } from "react-icons/lu";
+import { useSearchParams } from "react-router-dom";
 import { PaginationItem } from './pagination-item';
 
 
@@ -11,6 +12,9 @@ type Pagination = {
 }
 
 export const Pagination = ({ currentPage, total, limit, onPageChange }: Pagination) => {
+
+    const [pageParams, setPageParams] = useSearchParams(currentPage.toString())
+    const searchPageString = pageParams.get('page')
 
 
     const range = (start: number, end: number) => {
@@ -43,33 +47,34 @@ export const Pagination = ({ currentPage, total, limit, onPageChange }: Paginati
 
 
     const pagesCount = Math.ceil(total / limit);
-    const pagesCut = getPagesCut({ pagesCount, pagesCutCount: 10, currentPage });
+    const pagesCut = getPagesCut({ pagesCount, pagesCutCount: limit, currentPage });
     const pages = range(pagesCut.start, pagesCut.end);
     const isFirstPage = currentPage === 1;
     const isLastPage = currentPage === pagesCount;
 
-    console.log('currentPage', currentPage)
-    console.log('pages.length', pages.length)
-    console.log('pagesCut.end', pagesCut.end)
-
-
 
 
     const getFirstPageHandler = () => {
+        // onPageChange(1)
+        console.log('getFirstPageHandler()', pageParams)
+        pageParams.set('page', (1).toString())
         onPageChange(1)
     }
 
     const getLastPageHandler = () => {
+        console.log('getLastPageHandler()')
+        pageParams.set('page', (pagesCount).toString())
         onPageChange(pagesCount)
     }
 
-    const getPrevPageHandler = (currentPage: number) => {
+    const getPrevPageHandler = () => {
         if (currentPage > 0) {
             onPageChange(currentPage - 1)
         }
     }
 
-    const getNextPageHandler = (currentPage: number) => {
+    const getNextPageHandler = () => {
+        console.log(currentPage)
         if (currentPage < pagesCount) {
             onPageChange(currentPage + 1)
         }
@@ -81,18 +86,15 @@ export const Pagination = ({ currentPage, total, limit, onPageChange }: Paginati
         <article className="flex justify-center mt-40">
             <ul className="flex">
 
-                <PaginationItem
-                    text={<LuChevronFirst size={20} />}
-                    currentPage={currentPage}
-                    onPageChange={getFirstPageHandler}
+                <LuChevronFirst
+                    size={20}
+                    onClick={getFirstPageHandler}
                     isDisabled={isFirstPage}
                 />
 
-                <PaginationItem
-                    text={<HiOutlineChevronLeft size={20} />}
-                    currentPage={currentPage}
-                    onPageChange={getPrevPageHandler}
-                    isDisabled={isFirstPage}
+                <HiOutlineChevronLeft
+                    size={20}
+                    onClick={getPrevPageHandler}
                 />
 
                 {pages.map((page) => (
@@ -104,19 +106,17 @@ export const Pagination = ({ currentPage, total, limit, onPageChange }: Paginati
                     />
                 ))}
 
-                <PaginationItem
-                    text={<HiOutlineChevronRight size={20} />}
-                    currentPage={currentPage}
-                    onPageChange={getNextPageHandler}
-                    isDisabled={isLastPage}
+                <HiOutlineChevronRight
+                    size={20}
+                    onClick={getNextPageHandler}
                 />
 
-                <PaginationItem
-                    text={<LuChevronLast size={20} />}
-                    currentPage={currentPage}
-                    onPageChange={getLastPageHandler}
-                    isDisabled={isLastPage}
+
+                <LuChevronLast
+                    size={20}
+                    onClick={getLastPageHandler}
                 />
+
 
             </ul>
         </article>

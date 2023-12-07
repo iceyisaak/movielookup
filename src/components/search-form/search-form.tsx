@@ -49,7 +49,8 @@ export const SearchForm = () => {
         return navigate({
             pathname: '/results',
             search: createSearchParams({
-                query: searchInput
+                title: searchInput,
+                page: '1'
             }).toString()
         })
     }
