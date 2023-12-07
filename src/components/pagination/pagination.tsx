@@ -115,12 +115,14 @@ export const Pagination = ({ currentPage, total, limit, onPageChange }: Paginati
                 <HiOutlineChevronRight
                     size={20}
                     onClick={getNextPageHandler}
+                    isDisabled={isLastPage}
                 />
 
 
                 <LuChevronLast
                     size={20}
                     onClick={getLastPageHandler}
+                    isDisabled={isLastPage}
                 />
 
 
