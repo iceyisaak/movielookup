@@ -75,9 +75,8 @@ export const Pagination = ({ currentPage, total, limit, onPageChange }: Paginati
     }
 
     const getPrevPageHandler = () => {
-        if (currentPage > 0) {
-            onPageChange(currentPage - 1)
-        }
+        if (currentPage <= 1) return
+        onPageChange(currentPage - 1)
     }
 
     const getNextPageHandler = () => {
