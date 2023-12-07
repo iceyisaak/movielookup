@@ -12,7 +12,7 @@ export const ResultPage = () => {
 
 
     const [searchParams, setSearchParams] = useSearchParams()
-    const [resultPage, setResultPage] = useState(1)
+    // const [resultPage, setResultPage] = useState(1)
     const searchTitleString = searchParams.get('title')?.toString()
     const searchPageString = searchParams.get('page')
     const [currentPage, setCurrentPage] = useState(+searchPageString!)
@@ -23,8 +23,7 @@ export const ResultPage = () => {
         setCurrentPage(page)
     }
 
-    // console.log('totalResults:', SearchResult?.totalResults)
-    console.log('SearchResults: ', SearchResult)
+    // console.log('SearchResults: ', SearchResult)
 
 
     return (
