@@ -1,6 +1,6 @@
 // import { SearchBar } from "../../components/search-form"
 
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { getSearchCinema } from "../../apis/movie-api";
 
 import { useState } from "react";
@@ -55,39 +55,43 @@ export const ResultPage = () => {
                 w-[auto]
                 sm:w-[120rem]
                 '>
-                    {SearchResult?.Search.map((cinema) => (
-                        <div key={cinema.imdbID} className="mx-2 my-2 bg-orange-300 w-80 relative">
-                            <div className="inline-flex">
-                                <img
-                                    src={
-                                        cinema.Poster === 'N/A' ?
-                                            `https://placehold.co/90x135?text=N/A` :
-                                            cinema.Poster
-                                    }
-                                    alt={cinema.Title}
-                                    className='w-80 h-full'
-                                />
-                            </div>
-                            <div className="px-1 pb-5 relative">
-                                <div className="flex flex-wrap">
-                                    <h1 className="text-3xl font-bold break-words">
-                                        {cinema.Title}
-                                    </h1>
+                    {SearchResult?.Search.map(
+                        (cinema) => (
+                            <Link
+                                to={''}
+                                key={cinema.imdbID}
+                                className="mx-2 my-2 bg-orange-300 w-80 relative">
+                                <div className="inline-flex">
+                                    <img
+                                        src={
+                                            cinema.Poster === 'N/A' ?
+                                                `https://placehold.co/90x135?text=N/A` :
+                                                cinema.Poster
+                                        }
+                                        alt={cinema.Title}
+                                        className='w-80 h-full'
+                                    />
                                 </div>
-                                <p className="uppercase text-l">
-                                    {cinema.Type}
-                                </p>
-                                <p>
-                                    {cinema.Year}
-                                </p>
-                            </div>
-                            <span className="absolute right-1 bottom-0 flex">
-                                <MdPlaylistAdd size={20} />
-                                {/* <PiCheckCircleThin size={20} /> */}
-                            </span>
+                                <div className="px-1 pb-5 relative">
+                                    <div className="flex flex-wrap">
+                                        <h1 className="text-3xl font-bold break-words">
+                                            {cinema.Title}
+                                        </h1>
+                                    </div>
+                                    <p className="uppercase text-l">
+                                        {cinema.Type}
+                                    </p>
+                                    <p>
+                                        {cinema.Year}
+                                    </p>
+                                </div>
+                                <span className="absolute right-1 bottom-0 flex">
+                                    <MdPlaylistAdd size={20} />
+                                    {/* <PiCheckCircleThin size={20} /> */}
+                                </span>
 
-                        </div>
-                    ))}
+                            </Link>
+                        ))}
                 </div>
             </article>
 
