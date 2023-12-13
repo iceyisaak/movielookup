@@ -12,6 +12,9 @@ export const RootRouter = createBrowserRouter(
 
             <Route element={< RootLayout />} >
                 <Route path="results" element={< ResultPage />} />
+                <Route path="cinema">
+                    <Route index path=":cinemaId" element={< DetailPage />} />
+                </Route>
 
                 <Route path="marked" element={<MarkedPage />}>
                     <Route index path="favourite" element={< FavouritePage />} />
@@ -19,9 +22,6 @@ export const RootRouter = createBrowserRouter(
                     <Route path="watchlist" element={< WatchlistPage />} />
                 </Route>
 
-                <Route path="cinema">
-                    <Route index path=":cinemaId" element={< DetailPage />} />
-                </Route>
 
             </Route>
 

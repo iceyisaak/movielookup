@@ -58,7 +58,7 @@ export const ResultPage = () => {
                     {SearchResult?.Search.map(
                         (cinema) => (
                             <Link
-                                to={''}
+                                to={`/cinema/${cinema.imdbID}`}
                                 key={cinema.imdbID}
                                 className="mx-2 my-2 bg-orange-300 w-80 relative">
                                 <div className="inline-flex">
