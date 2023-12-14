@@ -9,13 +9,13 @@ type PaginationItem = {
     page?: number,
     currentPage: number,
     onPageChange: (page: number) => void,
-    isDisabled?: boolean
+    disabled?: boolean
 }
 
-export const PaginationItem = ({ page, currentPage, onPageChange, isDisabled }: PaginationItem) => {
+export const PaginationItem = ({ page, currentPage, onPageChange, disabled }: PaginationItem) => {
     const liClasses = cx({
         [`${style['active']}`]: page === currentPage,
-        [`${style['disabled']}`]: isDisabled,
+        [`${style['disabled']}`]: disabled,
     });
 
     const getSelectedPageHandler = () => {

@@ -8,16 +8,19 @@ export const DetailPage = () => {
     const { cinemaId } = useParams()
     const { data: CinemaDetail } = getCinemaDetail(cinemaId!, 'full')
 
-    console.log('cinemaId: ', cinemaId)
-    console.log('CinemaDetail: ', CinemaDetail)
+    // console.log('cinemaId: ', cinemaId)
+    // console.log('CinemaDetail: ', CinemaDetail)
 
     return (
         <section>
             <Link
                 to={`/results/?title=${CinemaDetail?.Title}&page=1`}
+                className="text-3xl underline cursor-pointer"
             >
-                <span>Search</span>
-            </Link> / <span>{CinemaDetail?.Title}</span>
+                Search
+            </Link><span className="text-3xl"> / </span><span className="text-3xl">
+                {CinemaDetail?.Title}
+            </span>
 
             <img
                 src={CinemaDetail?.Poster}
@@ -29,7 +32,10 @@ export const DetailPage = () => {
                 {CinemaDetail?.Title}
             </h1>
             <p>
-                {CinemaDetail?.imdbID}
+                IMDb ID: {CinemaDetail?.imdbID}
+            </p>
+            <p>
+                Plot:
             </p>
             <p className="text-2xl">
                 {CinemaDetail?.Plot}

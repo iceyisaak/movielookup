@@ -6,6 +6,7 @@ import { getSearchCinema } from "../../apis/movie-api";
 import { useState } from "react";
 import { MdPlaylistAdd } from "react-icons/md";
 import { Pagination } from '../../components/pagination';
+import { IoSearchOutline } from "react-icons/io5";
 
 
 export const ResultPage = () => {
@@ -35,8 +36,8 @@ export const ResultPage = () => {
                         className="w-10/12 h-16 px-2 rounded-md text-xl"
                         placeholder="e.g. Titanic"
                     />
-                    <button className="bg-gray-300 w-2/12 mx-2 rounded-md text-xl">
-                        LookUp
+                    <button className="bg-gray-300 w-2/12 mx-2 rounded-md text-xl flex justify-center items-center">
+                        <IoSearchOutline size={15} />
                     </button>
                 </div>
             </article>

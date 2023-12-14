@@ -94,13 +94,13 @@ export const Pagination = ({ currentPage, total, limit, onPageChange }: Paginati
                     size={20}
                     onClick={getFirstPageHandler}
                     className={``}
-                    isDisabled={isFirstPage}
+                    disabled={isFirstPage}
                 />
 
                 <HiOutlineChevronLeft
                     size={20}
                     onClick={getPrevPageHandler}
-                    isDisabled={isFirstPage}
+                    disabled={isFirstPage}
                 />
 
                 {pages.map((page) => (
@@ -115,14 +115,14 @@ export const Pagination = ({ currentPage, total, limit, onPageChange }: Paginati
                 <HiOutlineChevronRight
                     size={20}
                     onClick={getNextPageHandler}
-                    isDisabled={isLastPage}
+                    disabled={isLastPage}
                 />
 
 
                 <LuChevronLast
                     size={20}
                     onClick={getLastPageHandler}
-                    isDisabled={isLastPage}
+                    disabled={isLastPage}
                 />
 
 
