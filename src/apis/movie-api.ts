@@ -21,15 +21,16 @@ export const getSearchCinema = (SEARCH_TERM?: string, PAGE_NUMBER?: number, SEAR
             const data: unknown = await response.data
             return data as SearchResult
         },
-        enabled: SEARCH_TERM !== undefined && SEARCH_TERM !== ''
+        enabled: SEARCH_TERM !== undefined
+        // && SEARCH_TERM !== ''
     })
 }
 
 
 
-export const getCinemaDetail = (CINEMA_ID?: number, PLOT_LENGTH?: 'short' | 'full') => {
+export const getCinemaDetail = (CINEMA_ID?: string, PLOT_LENGTH?: 'short' | 'full') => {
 
-    const cinemaQuery = `&t=${CINEMA_ID}`
+    const cinemaQuery = `&i=${CINEMA_ID}`
     const plotLengthQuery = `&plot=${PLOT_LENGTH}`
     const APIURL = `${BASEURL}${APIKEY}${cinemaQuery}${plotLengthQuery}`
 
@@ -40,7 +41,7 @@ export const getCinemaDetail = (CINEMA_ID?: number, PLOT_LENGTH?: 'short' | 'ful
             const data: unknown = await response.data
             return data as CinemaDetail
         },
-        enabled: CINEMA_ID !== undefined
+        enabled: CINEMA_ID !== undefined && PLOT_LENGTH !== undefined
     })
 
 }

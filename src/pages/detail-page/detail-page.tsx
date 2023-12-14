@@ -3,10 +3,13 @@ import { getCinemaDetail } from "../../apis/movie-api"
 
 export const DetailPage = () => {
 
-    const [searchParams, setSearchParams] = useSearchParams()
-    const searchPageString = searchParams.get('id')
-    const id = useParams()
-    const { data: CinemaDetail } = getCinemaDetail(+id, 'full')
+    // const [searchParams, setSearchParams] = useSearchParams()
+    // const searchPageString = searchParams.get('id')
+    const { cinemaId } = useParams()
+    const { data: CinemaDetail } = getCinemaDetail(cinemaId!, 'full')
+
+    console.log('cinemaId: ', cinemaId)
+    console.log('CinemaDetail: ', CinemaDetail)
 
     return (
         <section>
