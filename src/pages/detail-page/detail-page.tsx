@@ -1,4 +1,4 @@
-import { useParams, useSearchParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { getCinemaDetail } from "../../apis/movie-api"
 
 export const DetailPage = () => {
@@ -13,8 +13,11 @@ export const DetailPage = () => {
 
     return (
         <section>
-
-            <span>Search</span> / <span>{CinemaDetail?.Title}</span>
+            <Link
+                to={`/results/?title=${CinemaDetail?.Title}&page=1`}
+            >
+                <span>Search</span>
+            </Link> / <span>{CinemaDetail?.Title}</span>
 
             <img
                 src={CinemaDetail?.Poster}
