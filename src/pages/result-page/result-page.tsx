@@ -19,6 +19,8 @@ export const ResultPage = () => {
     const [currentPage, setCurrentPage] = useState(+searchPageString!)
     const { data: SearchResult } = getSearchCinema(searchTitleString, +currentPage)
 
+    console.log('searchParams: ', searchParams)
+
 
     const onPageChangeHandler = (page: number) => {
         setCurrentPage(page)

@@ -1,9 +1,9 @@
-import { Link, useParams } from "react-router-dom"
+import { Link, useParams, useSearchParams } from "react-router-dom"
 import { getCinemaDetail } from "../../apis/movie-api"
 
 export const DetailPage = () => {
 
-    // const [searchParams, setSearchParams] = useSearchParams()
+    const [searchParams, setSearchParams] = useSearchParams()
     // const searchPageString = searchParams.get('id')
     const { cinemaId } = useParams()
     const { data: CinemaDetail } = getCinemaDetail(cinemaId!, 'full')
@@ -11,16 +11,18 @@ export const DetailPage = () => {
     // console.log('cinemaId: ', cinemaId)
     // console.log('CinemaDetail: ', CinemaDetail)
 
+    console.log('searchParams: ', searchParams)
+
     return (
         <section>
-            <Link
+            {/* <Link
                 to={`/results/?title=${CinemaDetail?.Title}&page=1`}
                 className="text-3xl underline cursor-pointer"
             >
                 Search
             </Link><span className="text-3xl"> / </span><span className="text-3xl">
                 {CinemaDetail?.Title}
-            </span>
+            </span> */}
 
             <img
                 src={CinemaDetail?.Poster}
