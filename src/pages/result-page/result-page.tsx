@@ -28,6 +28,20 @@ export const ResultPage = () => {
 
     // console.log('SearchResults: ', SearchResult)
 
+    type UseManageSearchParams = {
+        key: string,
+        value: string
+    }
+    const useManageSearchParams = ({ key, value }: UseManageSearchParams) => {
+        const sParams = new URLSearchParams(searchParams)
+        if (value === null) {
+            sParams.delete(key)
+        } else {
+            sParams.set(key, value)
+        }
+        return `?${sParams.toString()}`
+    }
+
 
     return (
         <section className="w-screen bg-green-400 pt-32 pb-52">
@@ -62,8 +76,10 @@ export const ResultPage = () => {
                         (cinema) => (
                             <Link
                                 key={cinema.imdbID}
-                                to={`/cinema/${cinema.imdbID}`}
-
+                                to={useManageSearchParams({
+                                    key: 'imdbID',
+                                    value: `${cinema.imdbID}`
+                                })}
                                 className="mx-2 my-2 bg-orange-300 w-80 relative">
                                 <div className="inline-flex">
                                     <img
@@ -106,6 +122,6 @@ export const ResultPage = () => {
                 onPageChange={onPageChangeHandler}
             />
 
-        </section>
+        </section >
     )
 }
