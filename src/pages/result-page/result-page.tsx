@@ -30,7 +30,7 @@ export const ResultPage = () => {
 
     type UseManageSearchParams = {
         key: string,
-        value: string
+        value: string | null
     }
     const useManageSearchParams = ({ key, value }: UseManageSearchParams) => {
         const sParams = new URLSearchParams(searchParams)
