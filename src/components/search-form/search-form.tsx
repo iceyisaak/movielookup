@@ -43,16 +43,6 @@ export const SearchForm = () => {
     const searchCinemaHandler = (e: SyntheticEvent) => {
         e.preventDefault()
         inputRef.current?.blur()
-
-        // if (searchInput === '') return
-
-        // return navigate({
-        //     pathname: '/results',
-        //     search: createSearchParams({
-        //         title: searchInput,
-        //         page: '1'
-        //     }).toString()
-        // })
     }
 
     const searchInputHandler = (e: ChangeEvent<HTMLInputElement>) => {

@@ -15,13 +15,14 @@
     "@tanstack/router-devtools": "^1.15.19",
     "axios": "^1.6.2",
     "classnames": "^2.3.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^19.0.0-canary-48ec17b86-20240402",
+    "react-dom": "^19.0.0-canary-48ec17b86-20240402",
     "react-icons": "^4.12.0",
     "react-router-dom": "^6.20.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@tanstack/router-vite-plugin": "^1.26.6",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
