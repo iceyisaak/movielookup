@@ -2,15 +2,15 @@ import { createFileRoute } from '@tanstack/react-router'
 import { ResultPage } from '../pages'
 
 export const Route = createFileRoute('/results')({
-  validateSearch: (results: Record<string, unknown>) => {
+  validateSearch: (search: Record<string, unknown>) => {
     return {
       // Search: [
       //   {
-      Title: results.Title as string,
-      Year: results.Year as string,
-      imdbID: results.imdbID as string,
-      Type: results.Type as string,
-      Poster: results.Poster as string
+      title: search.title as string,
+      year: search.year as string,
+      imdbID: search.imdbID as string,
+      type: search.type as string,
+      poster: search.poster as string
       //   }
       // ]
       // ,

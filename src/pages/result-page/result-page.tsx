@@ -1,19 +1,31 @@
 // import { SearchBar } from "../../components/search-form"
 
 // import { Link } from "@tanstack/react-router";
+// import { useNavigate } from "@tanstack/react-router";
 import { getSearchCinema } from "../../apis/movie-api";
+import { Route } from '../../routes/results'
 
-// import { useState } from "react";
-// import { Link } from "@tanstack/react-router";
+import { useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { IoSearchOutline } from "react-icons/io5";
-// import { MdPlaylistAdd } from "react-icons/md";
-// import { PiCheckCircleThin } from "react-icons/pi";
+import { MdPlaylistAdd } from "react-icons/md";
+import { PiCheckCircleThin } from "react-icons/pi";
 // import { Pagination } from '../../components/pagination';
 
 
 
 
 export const ResultPage = () => {
+
+    const { title } = Route.useSearch()
+    // const navigate = useNavigate({
+    //     from: Route.fullPath
+    // })
+    // navigate({
+    //     search: title
+    // })
+    console.log('title: ', title)
+
 
 
     // const { Search, totalResults, Response } = Route.useSearch()
@@ -26,11 +38,13 @@ export const ResultPage = () => {
     // const [searchParams, setSearchParams] = useSearchParams()
     // const [resultPage, setResultPage] = useState(1)
     // const searchTitleString = searchParams.get('title')?.toString()
+    const searchTitleString = title
     // const searchPageString = searchParams.get('page')
     // const [currentPage, setCurrentPage] = useState(+searchPageString!)
     // const { data: SearchResult } = getSearchCinema(searchTitleString, +currentPage)
+    const { data: SearchResult } = getSearchCinema(searchTitleString, 1)
 
-    // console.log('searchParams: ', searchParams)
+    console.log('SearchResult: ', SearchResult)
 
 
     // const onPageChangeHandler = (page: number) => {
@@ -71,10 +85,10 @@ export const ResultPage = () => {
 
             <article className="mb-5 px-5">
                 <h2 className="text-4xl">
-                    Search Results for: XXXXXXXXXX
+                    Search Results for: "{title ? title : null}"
                 </h2>
                 <p>
-                    Found: XXXXXXX Cinema(s)
+                    Found: {SearchResult?.totalResults} Cinema(s)
                 </p>
             </article>
 
@@ -83,14 +97,14 @@ export const ResultPage = () => {
                 w-[auto]
                 sm:w-[120rem]
                 '>
-                    {/* {SearchResult?.Search.map(
+                    {SearchResult?.Search.map(
                         (cinema) => (
                             <Link
                                 key={cinema.imdbID}
-                                to={useManageSearchParams({
-                                    key: 'imdbID',
-                                    value: `${cinema.imdbID}`
-                                })}
+                                // to={useManageSearchParams({
+                                //     key: 'imdbID',
+                                //     value: `${cinema.imdbID}`
+                                // })}
                                 className="mx-2 my-2 bg-orange-300 w-80 relative">
                                 <div className="inline-flex">
                                     <img
@@ -123,7 +137,7 @@ export const ResultPage = () => {
 
                             </Link>
                         ))
-                    } */}
+                    }
                 </div>
             </article>
 
