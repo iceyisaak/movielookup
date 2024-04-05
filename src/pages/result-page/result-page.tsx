@@ -17,7 +17,7 @@ import { PiCheckCircleThin } from "react-icons/pi";
 
 export const ResultPage = () => {
 
-    const { title } = Route.useSearch()
+    const { title, } = Route.useSearch()
     // const navigate = useNavigate({
     //     from: Route.fullPath
     // })
