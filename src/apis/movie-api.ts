@@ -4,6 +4,7 @@ import type { CinemaDetail, SearchResult } from "../types"
 import { APIKEY, BASEURL } from "./api-constant"
 
 
+
 export const getSearchCinema = (SEARCH_TERM?: string, PAGE_NUMBER?: number, SEARCH_YEAR?: number) => {
 
     const searchTermQuery = `${SEARCH_TERM ? `&s=${SEARCH_TERM}` : ''}`

@@ -1,20 +1,35 @@
-import { ChangeEvent, SyntheticEvent, useRef, useState } from "react";
+import { ChangeEvent, SyntheticEvent, useState } from "react";
 import { getSearchCinema } from "../../apis/movie-api";
+import { Route } from '../../routes/__root';
 import { SearchResult } from "../../types";
 import { SearchSuggestionMenu } from "./search-suggestion-menu/search-suggestion-menu";
 
+import { useNavigate } from "@tanstack/react-router";
 import { GrClose } from "react-icons/gr";
 // import { createSearchParams, useNavigate } from "react-router-dom";
 
 export const SearchForm = () => {
 
-    const inputRef = useRef<HTMLInputElement>(null)
+    // const inputRef = useRef(null)
     const [searchInput, setSearchInput] = useState('')
     const [inputFocus, setInputFocus] = useState(false)
     const [showSuggestionMenu, setShowSuggestionMenu] = useState(false)
-    // const navigate = useNavigate()
+    const navigate = useNavigate({
+        from: Route.fullPath
+    })
 
     const { data: SearchResult } = getSearchCinema(searchInput)
+
+
+    const searchFormAction = async (formData: FormData) => {
+
+        navigate({
+            search: {
+                title: formData.get('searchTerm'),
+            },
+            to: '/results'
+        })
+    }
 
     const inputFocusHandler = () => {
         setInputFocus(true)
@@ -42,7 +57,7 @@ export const SearchForm = () => {
 
     const searchCinemaHandler = (e: SyntheticEvent) => {
         e.preventDefault()
-        inputRef.current?.blur()
+        // inputRef.current?.blur()
     }
 
     const searchInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -56,10 +71,15 @@ export const SearchForm = () => {
 
 
     return (
-        <form onSubmit={searchCinemaHandler} className="w-full flex flex-col relative">
+        <form
+            // onSubmit={searchCinemaHandler}
+            action={searchFormAction as unknown as string}
+            // ref={inputRef}
+            className="w-full flex flex-col relative"
+        >
             <div className="flex relative">
                 <input
-                    ref={inputRef}
+                    name="searchTerm"
                     type="text"
                     className="
                         w-full

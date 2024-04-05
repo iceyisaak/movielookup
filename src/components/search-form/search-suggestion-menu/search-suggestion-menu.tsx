@@ -1,6 +1,6 @@
 import { MouseEventHandler } from "react"
-import { Link } from "react-router-dom"
 import { SearchResult } from "../../../types"
+import { Link } from "@tanstack/react-router"
 
 
 type SearchSuggestionMenu = {
@@ -18,7 +18,7 @@ export const SearchSuggestionMenu = ({ data, itemClickHandler }: SearchSuggestio
                     data.Search.map((cinema) => (
                         <Link
                             key={cinema.imdbID}
-                            onMouseDown={itemClickHandler(`${cinema.Title}`)}
+                            // onMouseDown={itemClickHandler(`${cinema.Title}`)}
                             to={`#`}
                             className="flex my-3"
                         >

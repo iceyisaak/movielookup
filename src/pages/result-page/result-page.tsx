@@ -1,17 +1,26 @@
 // import { SearchBar } from "../../components/search-form"
 
 // import { Link } from "@tanstack/react-router";
-// import { getSearchCinema } from "../../apis/movie-api";
+import { getSearchCinema } from "../../apis/movie-api";
 
 // import { useState } from "react";
+// import { Link } from "@tanstack/react-router";
 import { IoSearchOutline } from "react-icons/io5";
 // import { MdPlaylistAdd } from "react-icons/md";
+// import { PiCheckCircleThin } from "react-icons/pi";
 // import { Pagination } from '../../components/pagination';
 
 
 
 
 export const ResultPage = () => {
+
+
+    // const { Search, totalResults, Response } = Route.useSearch()
+
+    // console.log('Search', Search)
+    // console.log('totalResults', totalResults)
+    // console.log('Response', Response)
 
 
     // const [searchParams, setSearchParams] = useSearchParams()
@@ -69,12 +78,12 @@ export const ResultPage = () => {
                 </p>
             </article>
 
-            {/* <article className="flex justify-center">
+            <article className="flex justify-center">
                 <div className='flex flex-wrap justify-center bg-red-200
                 w-[auto]
                 sm:w-[120rem]
                 '>
-                    {SearchResult?.Search.map(
+                    {/* {SearchResult?.Search.map(
                         (cinema) => (
                             <Link
                                 key={cinema.imdbID}
@@ -109,14 +118,14 @@ export const ResultPage = () => {
                                 </div>
                                 <span className="absolute right-1 bottom-0 flex">
                                     <MdPlaylistAdd size={20} />
-                                    {/* <PiCheckCircleThin size={20} /> */}
-            {/* </span>
+                                    <PiCheckCircleThin size={20} />
+                                </span>
 
                             </Link>
                         ))
-                        }
+                    } */}
                 </div>
-            </article>  */}
+            </article>
 
             {/* <Pagination
                 currentPage={currentPage}
