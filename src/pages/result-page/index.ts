@@ -1,1 +1,1 @@
-export { ResultPage } from './result-page'
+// export { ResultPage } from './result-page'

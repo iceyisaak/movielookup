@@ -13,6 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as ResultsImport } from './routes/results'
 import { Route as IndexImport } from './routes/index'
+import { Route as DetailImdbIDImport } from './routes/detail/$imdbID'
 
 // Create/Update Routes
 
@@ -23,6 +24,11 @@ const ResultsRoute = ResultsImport.update({
 
 const IndexRoute = IndexImport.update({
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DetailImdbIDRoute = DetailImdbIDImport.update({
+  path: '/detail/$imdbID',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -38,11 +44,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResultsImport
       parentRoute: typeof rootRoute
     }
+    '/detail/$imdbID': {
+      preLoaderRoute: typeof DetailImdbIDImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren([IndexRoute, ResultsRoute])
+export const routeTree = rootRoute.addChildren([
+  IndexRoute,
+  ResultsRoute,
+  DetailImdbIDRoute,
+])
 
 /* prettier-ignore-end */
