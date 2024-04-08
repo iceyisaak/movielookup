@@ -11,26 +11,16 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as ResultsImport } from './routes/results'
 import { Route as IndexImport } from './routes/index'
-import { Route as DetailImdbIDImport } from './routes/detail/$imdbID'
 import { Route as LayoutsWatchlistlayoutImport } from './routes/_layouts/watchlistlayout'
-import { Route as LayoutsResultslayoutImport } from './routes/_layouts/resultslayout'
+import { Route as LayoutsResultslayoutImport } from './routes/_layouts/_resultslayout'
+import { Route as LayoutsResultslayoutResultsImport } from './routes/_layouts/_resultslayout.results'
+import { Route as LayoutsResultslayoutDetailImdbIDImport } from './routes/_layouts/_resultslayout.detail.$imdbID'
 
 // Create/Update Routes
 
-const ResultsRoute = ResultsImport.update({
-  path: '/results',
-  getParentRoute: () => rootRoute,
-} as any)
-
 const IndexRoute = IndexImport.update({
   path: '/',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const DetailImdbIDRoute = DetailImdbIDImport.update({
-  path: '/detail/$imdbID',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -40,9 +30,21 @@ const LayoutsWatchlistlayoutRoute = LayoutsWatchlistlayoutImport.update({
 } as any)
 
 const LayoutsResultslayoutRoute = LayoutsResultslayoutImport.update({
-  path: '/resultslayout',
+  id: '/_layouts/_resultslayout',
   getParentRoute: () => rootRoute,
 } as any)
+
+const LayoutsResultslayoutResultsRoute =
+  LayoutsResultslayoutResultsImport.update({
+    path: '/results',
+    getParentRoute: () => LayoutsResultslayoutRoute,
+  } as any)
+
+const LayoutsResultslayoutDetailImdbIDRoute =
+  LayoutsResultslayoutDetailImdbIDImport.update({
+    path: '/detail/$imdbID',
+    getParentRoute: () => LayoutsResultslayoutRoute,
+  } as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -52,11 +54,7 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/results': {
-      preLoaderRoute: typeof ResultsImport
-      parentRoute: typeof rootRoute
-    }
-    '/_layouts/resultslayout': {
+    '/_layouts/_resultslayout': {
       preLoaderRoute: typeof LayoutsResultslayoutImport
       parentRoute: typeof rootRoute
     }
@@ -64,9 +62,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutsWatchlistlayoutImport
       parentRoute: typeof rootRoute
     }
-    '/detail/$imdbID': {
-      preLoaderRoute: typeof DetailImdbIDImport
-      parentRoute: typeof rootRoute
+    '/_layouts/_resultslayout/results': {
+      preLoaderRoute: typeof LayoutsResultslayoutResultsImport
+      parentRoute: typeof LayoutsResultslayoutImport
+    }
+    '/_layouts/_resultslayout/detail/$imdbID': {
+      preLoaderRoute: typeof LayoutsResultslayoutDetailImdbIDImport
+      parentRoute: typeof LayoutsResultslayoutImport
     }
   }
 }
@@ -75,10 +77,11 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
-  ResultsRoute,
-  LayoutsResultslayoutRoute,
+  LayoutsResultslayoutRoute.addChildren([
+    LayoutsResultslayoutResultsRoute,
+    LayoutsResultslayoutDetailImdbIDRoute,
+  ]),
   LayoutsWatchlistlayoutRoute,
-  DetailImdbIDRoute,
 ])
 
 /* prettier-ignore-end */

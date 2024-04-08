@@ -1,9 +1,14 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { getCinemaDetail } from '../../apis/movie-api'
 
-export const Route = createFileRoute('/detail/$imdbID')({
+export const Route = createFileRoute('/_layouts/_resultslayout/detail/$imdbID')({
   component: DetailPage
 })
+
+import { getCinemaDetail } from '../../apis/movie-api'
+
+// export const Route = createFileRoute('/_layouts/_resultslayout/detail/$imdbID')({
+//   component: DetailPage
+// })
 
 
 function DetailPage() {

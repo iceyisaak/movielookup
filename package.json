@@ -18,7 +18,6 @@
     "react": "^19.0.0-canary-48ec17b86-20240402",
     "react-dom": "^19.0.0-canary-48ec17b86-20240402",
     "react-icons": "^4.12.0",
-    "react-router-dom": "^6.20.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {
