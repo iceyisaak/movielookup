@@ -2,7 +2,7 @@ import { ChangeEvent, SyntheticEvent, useState } from "react";
 import { getSearchCinema } from "../../apis/movie-api";
 import { Route } from '../../routes/__root';
 import { SearchResult } from "../../types";
-import { SearchSuggestionMenu } from "./search-suggestion-menu/search-suggestion-menu";
+import { SearchSuggestionMenu } from "./search-suggestion-menu";
 
 import { useNavigate } from "@tanstack/react-router";
 import { GrClose } from "react-icons/gr";
@@ -26,6 +26,7 @@ export const SearchForm = () => {
         navigate({
             search: {
                 title: formData.get('searchTerm'),
+                page: 1
             },
             to: '/results'
         })

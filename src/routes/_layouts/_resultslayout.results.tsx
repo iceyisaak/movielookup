@@ -27,6 +27,7 @@ import { Link } from "@tanstack/react-router";
 import { MdPlaylistAdd } from "react-icons/md";
 import { PiCheckCircleThin } from "react-icons/pi";
 // import { Pagination } from '../../components/pagination';
+// import { useState } from 'react';
 
 
 // export const Route = createFileRoute('/_layouts/_resultslayout/results')({
@@ -76,9 +77,9 @@ function ResultsPage() {
     console.log('SearchResult: ', SearchResult)
 
 
-    // const onPageChangeHandler = (page: number) => {
-    // setCurrentPage(page)
-    // }
+    const onPageChangeHandler = (page: number) => {
+        // setCurrentPage(page)
+    }
 
     // console.log('SearchResults: ', SearchResult)
 
