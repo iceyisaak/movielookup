@@ -1,10 +1,12 @@
-import { ChangeEvent, SyntheticEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
+import { createSearchParams, useNavigate } from "react-router-dom";
 import { getSearchCinema } from "../../apis/movie-api";
-import { SearchResult } from "../../types";
 import { SearchSuggestionMenu } from "./search-suggestion-menu";
 
 import { GrClose } from "react-icons/gr";
-import { createSearchParams, useNavigate } from "react-router-dom";
+import { SearchResult } from "../../types";
+
+
 
 export const SearchForm = () => {
 
@@ -20,7 +22,6 @@ export const SearchForm = () => {
     const searchFormAction = async (formData: FormData) => {
 
         // console.log('formData: ', formData.get('searchTerm'))
-
         // const searchTerm = formData.get('searchTerm');
 
         return navigate({
@@ -55,11 +56,10 @@ export const SearchForm = () => {
         console.log('itemClickHandler(): ', urlPath)
     }
 
-
-    const searchCinemaHandler = (e: SyntheticEvent) => {
-        e.preventDefault()
-        // inputRef.current?.blur()
-    }
+    // const searchCinemaHandler = (e: SyntheticEvent) => {
+    // e.preventDefault()
+    // inputRef.current?.blur()
+    // }
 
     const searchInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
         e.preventDefault()
