@@ -1,3 +1,3 @@
-// export { Home } from './home'
-// export { ResultPage } from './result-page'
-// export { DetailPage } from './detail-page'
+export { Home } from './home'
+export { ResultsPage } from './results-page'
+export { DetailPage } from './detail-page'

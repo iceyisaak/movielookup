@@ -1,12 +1,10 @@
 import { ChangeEvent, SyntheticEvent, useState } from "react";
 import { getSearchCinema } from "../../apis/movie-api";
-import { Route } from '../../routes/__root';
 import { SearchResult } from "../../types";
 import { SearchSuggestionMenu } from "./search-suggestion-menu";
 
-import { useNavigate } from "@tanstack/react-router";
 import { GrClose } from "react-icons/gr";
-// import { createSearchParams, useNavigate } from "react-router-dom";
+import { createSearchParams, useNavigate } from "react-router-dom";
 
 export const SearchForm = () => {
 
@@ -14,21 +12,23 @@ export const SearchForm = () => {
     const [searchInput, setSearchInput] = useState('')
     const [inputFocus, setInputFocus] = useState(false)
     const [showSuggestionMenu, setShowSuggestionMenu] = useState(false)
-    const navigate = useNavigate({
-        from: Route.fullPath
-    })
+    const navigate = useNavigate()
 
     const { data: SearchResult } = getSearchCinema(searchInput)
 
 
     const searchFormAction = async (formData: FormData) => {
 
-        navigate({
-            search: {
-                title: formData.get('searchTerm'),
-                page: 1
-            },
-            to: '/results'
+        // console.log('formData: ', formData.get('searchTerm'))
+
+        // const searchTerm = formData.get('searchTerm');
+
+        return navigate({
+            pathname: '/results',
+            search: createSearchParams({
+                title: searchInput,
+                page: '1'
+            }).toString()
         })
     }
 

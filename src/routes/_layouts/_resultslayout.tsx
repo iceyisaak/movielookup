@@ -1,13 +1,9 @@
-import { Link, Outlet, createFileRoute } from '@tanstack/react-router';
 import { RiPlayList2Fill } from "react-icons/ri";
 import { IoSearchOutline } from 'react-icons/io5';
-
-export const Route = createFileRoute('/_layouts/_resultslayout')({
-    component: ResultsLayout
-})
+import { Link, Outlet } from "react-router-dom";
 
 
-function ResultsLayout() {
+export function ResultsLayout() {
 
     return (
         <section className="w-screen bg-green-400 pb-52">

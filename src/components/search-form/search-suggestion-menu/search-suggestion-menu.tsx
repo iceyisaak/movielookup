@@ -1,6 +1,7 @@
 import { MouseEventHandler } from "react"
 import { SearchResult } from "../../../types"
-import { Link } from "@tanstack/react-router"
+import { Link } from "react-router-dom"
+
 
 
 type SearchSuggestionMenu = {
