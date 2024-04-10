@@ -47,19 +47,6 @@ export const ResultsPage = () => {
 
     return (
         <section className="w-screen bg-green-400 pt-32 pb-52">
-            {/* <article className="flex justify-center bg-blue-600 mb-10">
-                <div className="w-8/12 bg-red-400 flex">
-                    <input
-                        // value={'Search Bar'}
-                        className="w-10/12 h-16 px-2 rounded-md text-xl"
-                        placeholder="e.g. Titanic"
-                    />
-                    <button className="bg-gray-300 w-2/12 mx-2 rounded-md text-xl flex justify-center items-center">
-                        <IoSearchOutline size={15} />
-                    </button>
-                </div>
-            </article> */}
-
             <article className="mb-5 px-5">
                 <h2 className="text-4xl">
                     Search Results for: "{searchTitleString ? searchTitleString : null}"

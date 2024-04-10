@@ -1,24 +1,12 @@
 import { IoSearchOutline } from "react-icons/io5";
-import { RiPlayList2Fill } from "react-icons/ri";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import { Navbar } from "../components/navbar";
 
 export function MainLayout() {
 
     return (
         <section className="w-screen bg-green-400 pb-52">
-            <nav className='flex items-center justify-between px-2'>
-                <Link to='/'>
-                    <div className=" flex items-center">
-                        <img
-                            src={'../../../src/assets/movielookup_favicon.svg'}
-                            alt="logo"
-                            className='w-20'
-                        />
-                        <span className='text-4xl'>MovieLookup</span>
-                    </div>
-                </Link>
-                <RiPlayList2Fill size={30} />
-            </nav>
+            <Navbar />
             <article className="flex justify-center bg-blue-600 mb-10">
                 <div className="w-8/12 bg-red-400 flex">
                     <input
