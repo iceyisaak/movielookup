@@ -26,7 +26,7 @@ export const SearchForm = () => {
     const { data: SearchResult } = getSearchCinema(searchInput)
 
 
-    const searchFormAction = async (formData: FormData) => {
+    const searchFormAction = async () => {
 
         // console.log('formData: ', formData.get('searchTerm'))
         // const searchTerm = formData.get('searchTerm');
@@ -180,7 +180,6 @@ export const SearchForm = () => {
                         />
                     }
                     <button className="
-                        bg-gray-300
                         w-2/12
                         mx-2
                         rounded-md
