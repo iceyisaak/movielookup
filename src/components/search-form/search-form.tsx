@@ -21,8 +21,6 @@ export const SearchForm = () => {
     const [searchParams, _setSearchParams] = useSearchParams()
     const pathname = location.pathname
 
-    console.log('searchParams: ', searchParams.get('title'))
-
     const { data: SearchResult } = getSearchCinema(searchInput)
 
 
@@ -44,7 +42,6 @@ export const SearchForm = () => {
         })
 
     }
-    console.log('inputFocus: ', inputFocus)
 
     const inputFocusHandler = () => {
         setInputFocus(true)
@@ -67,7 +64,6 @@ export const SearchForm = () => {
 
     const itemClickHandler = (urlPath: string) => () => {
         navigate(urlPath)
-        console.log('itemClickHandler(): ', urlPath)
     }
 
     // const searchCinemaHandler = (e: SyntheticEvent) => {

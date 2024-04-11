@@ -3,7 +3,7 @@
 import { Link, useSearchParams } from "react-router-dom";
 import { getSearchCinema } from "../../apis/movie-api";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MdPlaylistAdd } from "react-icons/md";
 import { PiCheckCircleThin } from "react-icons/pi";
 import { Pagination } from "../../components/pagination";
@@ -21,14 +21,15 @@ export const ResultsPage = () => {
     const { data: SearchResult } = getSearchCinema(searchTitleString, +currentPage)
     // const { data: SearchResult } = getSearchCinema(searchTitleString, 1)
 
-    console.log('SearchResult: ', SearchResult)
-
-
     const onPageChangeHandler = (page: number) => {
         setCurrentPage(page)
     }
 
     console.log('SearchResults: ', SearchResult)
+
+    useEffect(() => {
+        setCurrentPage(1)
+    }, [searchTitleString])
 
 
     return (
