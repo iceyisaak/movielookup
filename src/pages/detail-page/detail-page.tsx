@@ -45,7 +45,7 @@ export function DetailPage() {
                     <img
                         src={CinemaDetail?.Poster}
                         alt={CinemaDetail?.Title}
-                        className=''
+                        title={CinemaDetail?.Title}
                     />
                     <button className='flex flex-col items-center mt-4'>
                         <RiPlayListAddFill size={20} /><span className='my-2'>Add to Watchlist</span>
@@ -67,32 +67,42 @@ export function DetailPage() {
                     <div className='text-xl mb-2'>
                         <span className='font-bold text-xl'>Genre:</span> {CinemaDetail?.Genre}
                     </div>
-                    <div className='text-xl mb-2'>
-                        <span className='font-bold text-xl'>Staring:</span> {CinemaDetail?.Actors}
-                    </div>
-                    <div className='text-xl mb-2'>
-                        <span className='font-bold text-xl'>Director(s):</span> {CinemaDetail?.Director}
-                    </div>
-                    <div className='text-xl mb-2'>
-                        <span className='font-bold text-xl'>Writer(s):</span> {CinemaDetail?.Writer}
-                    </div>
+                    {
+                        CinemaDetail?.Actors === 'N/A' ? null :
+                            <div className='text-xl mb-2'>
+                                <span className='font-bold text-xl'>Staring:</span> {CinemaDetail?.Actors}
+                            </div>
+                    }
+                    {
+                        CinemaDetail?.Director === 'N/A' ? null :
+                            <div className='text-xl mb-2'>
+                                <span className='font-bold text-xl'>Director(s):</span> {CinemaDetail?.Director}
+                            </div>
+                    }
+                    {
+                        CinemaDetail?.Writer === 'N/A' ? null :
+                            <div className='text-xl mb-2'>
+                                <span className='font-bold text-xl'>Writer(s):</span> {CinemaDetail?.Writer}
+                            </div>
+                    }
                     <div className='text-xl mb-2'>
                         <span className='font-bold text-xl'>Runtime:</span> {CinemaDetail?.Runtime}
                     </div>
                     <div className='text-xl mb-2'>
                         <span className='font-bold text-xl'>Released Date:</span> {CinemaDetail?.Released}
                     </div>
-
-                    <div className='text-xl mb-2'>
-                        <span className='font-bold text-xl'>Awards:</span> {CinemaDetail?.Awards}
-                    </div>
-
-
-
-                    <div className='text-xl mb-2'>
-                        <span className='font-bold text-xl'>Rated:</span> {CinemaDetail?.Rated}
-                    </div>
-
+                    {
+                        CinemaDetail?.Awards === 'N/A' ? null :
+                            <div className='text-xl mb-2'>
+                                <span className='font-bold text-xl'>Awards:</span> {CinemaDetail?.Awards}
+                            </div>
+                    }
+                    {
+                        CinemaDetail?.Rated === 'N/A' ? null :
+                            <div className='text-xl mb-2'>
+                                <span className='font-bold text-xl'>Rated:</span> {CinemaDetail?.Rated}
+                            </div>
+                    }
                     {
                         CinemaDetail?.Production === 'N/A' ?
                             null :
@@ -100,9 +110,12 @@ export function DetailPage() {
                                 <span className='font-bold text-xl'>Production</span>{CinemaDetail?.Production}
                             </div>
                     }
-                    <div className='text-xl mb-2'>
-                        <span className='font-bold text-xl'>Box Office:</span> {CinemaDetail?.BoxOffice}
-                    </div>
+                    {
+                        CinemaDetail?.BoxOffice === 'N/A' ? null :
+                            <div className='text-xl mb-2'>
+                                <span className='font-bold text-xl'>Box Office:</span> {CinemaDetail?.BoxOffice}
+                            </div>
+                    }
                     <div className='text-xl mb-2'>
                         <span className='font-bold text-xl'>Language(s):</span> {CinemaDetail?.Language}
                     </div>
@@ -110,9 +123,12 @@ export function DetailPage() {
                     <div className='text-xl mb-2'>
                         {CinemaDetail?.Plot}
                     </div>
-                    <div className='text-xl mb-2'>
-                        <span className='font-bold text-xl'>Meta Score:</span> {CinemaDetail?.Metascore}
-                    </div>
+                    {
+                        CinemaDetail?.Metascore === 'N/A' ? null :
+                            <div className='text-xl mb-2'>
+                                <span className='font-bold text-xl'>Meta Score:</span> {CinemaDetail?.Metascore}
+                            </div>
+                    }
                     <div className='text-xl mb-2'>
                         <span className='font-bold text-xl'>Rating(s):</span> {CinemaDetail?.Ratings.map(
                             (rating) => (
