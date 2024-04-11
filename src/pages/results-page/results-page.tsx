@@ -1,5 +1,3 @@
-// import { SearchBar } from "../../components/search-form"
-
 import { Link, useSearchParams } from "react-router-dom";
 import { getSearchCinema } from "../../apis/movie-api";
 
@@ -14,12 +12,10 @@ import { Pagination } from "../../components/pagination";
 export const ResultsPage = () => {
 
     const [searchParams, _setSearchParams] = useSearchParams()
-    // const [resultPage, setResultPage] = useState(1)
     const searchTitleString = searchParams.get('title')?.toString()
     const searchPageString = searchParams.get('page')
     const [currentPage, setCurrentPage] = useState(+searchPageString!)
     const { data: SearchResult } = getSearchCinema(searchTitleString, +currentPage)
-    // const { data: SearchResult } = getSearchCinema(searchTitleString, 1)
 
     const onPageChangeHandler = (page: number) => {
         setCurrentPage(page)
@@ -28,7 +24,7 @@ export const ResultsPage = () => {
     console.log('SearchResults: ', SearchResult)
 
     useEffect(() => {
-        setCurrentPage(1)
+        setCurrentPage(currentPage)
     }, [searchTitleString])
 
 
