@@ -118,8 +118,8 @@ export const SearchForm = () => {
                         />
                     </div>
                     {
-                        searchInput !== ''
-                        &&
+                        searchInput !== '' &&
+                        inputFocus &&
                         <GrClose
                             className={`
                         w-12 h-12 absolute right-4 top-1
