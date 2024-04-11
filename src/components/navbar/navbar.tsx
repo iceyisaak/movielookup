@@ -1,5 +1,6 @@
 import { RiPlayList2Fill } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
+import { SearchForm } from '../search-form';
 
 
 export const Navbar = () => {
@@ -16,6 +17,7 @@ export const Navbar = () => {
                     <span className='text-4xl'>MovieLookup</span>
                 </div>
             </Link>
+            <SearchForm />
             <Link to='/watchlist'>
                 <RiPlayList2Fill size={30} />
             </Link>

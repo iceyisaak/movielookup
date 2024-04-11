@@ -11,7 +11,7 @@ type SearchSuggestionMenu = {
 
 export const SearchSuggestionMenu = ({ data, itemClickHandler }: SearchSuggestionMenu) => {
     return (
-        <article className={`w-full absolute bg-gray-200 h-96 mt-14 overflow-y-scroll pt-1 pb-1 px-2`}>
+        <article className={`w-full absolute bg-gray-200 h-96 mt-16 overflow-y-scroll pt-1 pb-1 px-2`}>
             {
                 data &&
                     'Search' in data &&
