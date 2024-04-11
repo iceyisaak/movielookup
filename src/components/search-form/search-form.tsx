@@ -33,6 +33,8 @@ export const SearchForm = () => {
 
         inputBlurHandler()
 
+        if (searchInput === '' || null) return
+
         return navigate({
             pathname: '/results',
             search: createSearchParams({
@@ -139,10 +141,10 @@ export const SearchForm = () => {
                 </form>
                 :
                 <form
-                    className="flex justify-center bg-blue-600 relative w-7/12 z-10"
+                    className="flex justify-center relative w-7/12 z-10"
                     action={searchFormAction as unknown as string}
                 >
-                    <div className="w-full bg-red-400 flex relative">
+                    <div className="w-full flex relative">
                         <input
                             ref={inputRef}
                             name="searchTerm"
@@ -186,6 +188,7 @@ export const SearchForm = () => {
                         flex
                         justify-center
                         items-center
+                        bg-orange-500
                     ">
                         <IoSearchOutline size={15} />
                     </button>
