@@ -16,7 +16,7 @@ export const Navbar = () => {
             </Link>
             <SearchForm />
             <Link to='/watchlist'>
-                <RiPlayList2Fill size={30} className='text-gray-800' />
+                <RiPlayList2Fill size={30} className='text-gray-600' />
             </Link>
         </nav>
     )
