@@ -30,20 +30,6 @@ export const ResultsPage = () => {
 
     console.log('SearchResults: ', SearchResult)
 
-    // type UseManageSearchParams = {
-    //     key: string,
-    //     value: string | null
-    // }
-    // const useManageSearchParams = ({ key, value }: UseManageSearchParams) => {
-    //     const sParams = new URLSearchParams(searchParams)
-    //     if (value === null) {
-    //         sParams.delete(key)
-    //     } else {
-    //         sParams.set(key, value)
-    //     }
-    //     return `?${sParams.toString()}`
-    // }
-
 
     return (
         <section className="w-screen pt-32 pb-52">
@@ -51,13 +37,13 @@ export const ResultsPage = () => {
                 <h2 className="text-4xl text-gray-300">
                     Search Results for: "{searchTitleString ? searchTitleString : null}"
                 </h2>
-                <p>
+                <p className="text-gray-300">
                     Found: {SearchResult?.totalResults} Cinema(s)
                 </p>
             </article>
 
             <article className="flex justify-center">
-                <div className='flex flex-wrap justify-center bg-red-200
+                <div className='flex flex-wrap justify-center
                 w-[auto]
                 sm:w-[120rem]
                 '>
@@ -66,7 +52,7 @@ export const ResultsPage = () => {
                             <Link
                                 key={cinema.imdbID}
                                 to={`/detail/${cinema.imdbID}`}
-                                className="mx-2 my-2 bg-orange-300 w-80 relative"
+                                className="mx-2 my-2 bg-gray-900 w-80 relative rounded-lg"
                             >
                                 <div className="inline-flex">
                                     <img
@@ -81,14 +67,14 @@ export const ResultsPage = () => {
                                 </div>
                                 <div className="px-1 pb-5 relative">
                                     <div className="flex flex-wrap">
-                                        <h1 className="text-3xl font-bold break-words">
+                                        <h1 className="text-3xl font-bold break-words text-gray-100">
                                             {cinema.Title}
                                         </h1>
                                     </div>
-                                    <p className="uppercase text-l">
+                                    <p className="uppercase text-l text-gray-100">
                                         {cinema.Type}
                                     </p>
-                                    <p>
+                                    <p className="text-gray-300">
                                         {cinema.Year}
                                     </p>
                                 </div>

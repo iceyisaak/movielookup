@@ -6,7 +6,7 @@ import { SearchForm } from '../search-form';
 export const Navbar = () => {
 
     return (
-        <nav className='flex items-center justify-between px-2'>
+        <nav className='flex items-center justify-between px-3 pt-3'>
             <Link to='/'>
                 <div className="flex items-center">
                     <h1 className="text-5xl mb-5 text-yellow-300 flex pt-5 pl-2">
@@ -16,7 +16,7 @@ export const Navbar = () => {
             </Link>
             <SearchForm />
             <Link to='/watchlist'>
-                <RiPlayList2Fill size={30} />
+                <RiPlayList2Fill size={30} className='text-gray-800' />
             </Link>
         </nav>
     )

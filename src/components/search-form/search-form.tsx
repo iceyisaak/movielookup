@@ -33,7 +33,7 @@ export const SearchForm = () => {
 
         inputBlurHandler()
 
-        if (searchInput === '' || null) return
+        if (searchInput === '' || searchInput === null) return
 
         return navigate({
             pathname: '/results',
