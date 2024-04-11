@@ -11,7 +11,7 @@ export function DetailPage() {
 
     const { data: CinemaDetail } = getCinemaDetail(imdbID, 'full')
 
-    console.log('CinemaDetail: ', CinemaDetail)
+    // console.log('CinemaDetail: ', CinemaDetail)
 
     return (
         <section className='mt-40 px-5 text-gray-300'>
@@ -122,9 +122,12 @@ export function DetailPage() {
                                 <span className='font-bold text-xl'>Box Office:</span> {CinemaDetail?.BoxOffice}
                             </div>
                     }
-                    <div className='text-xl mb-2'>
-                        <span className='font-bold text-xl'>Language(s):</span> {CinemaDetail?.Language}
-                    </div>
+                    {
+                        CinemaDetail?.Language === 'N/A' ? null :
+                            <div className='text-xl mb-2'>
+                                <span className='font-bold text-xl'>Language(s):</span> {CinemaDetail?.Language}
+                            </div>
+                    }
                     {
                         CinemaDetail?.Plot === 'N/A' ? null :
                             <>
