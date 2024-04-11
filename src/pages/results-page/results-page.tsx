@@ -6,14 +6,14 @@ import { getSearchCinema } from "../../apis/movie-api";
 import { useState } from "react";
 import { MdPlaylistAdd } from "react-icons/md";
 import { PiCheckCircleThin } from "react-icons/pi";
-// import { Pagination } from "../../components/pagination";
+import { Pagination } from "../../components/pagination";
 
 
 
 
 export const ResultsPage = () => {
 
-    const [searchParams, setSearchParams] = useSearchParams()
+    const [searchParams, _setSearchParams] = useSearchParams()
     // const [resultPage, setResultPage] = useState(1)
     const searchTitleString = searchParams.get('title')?.toString()
     const searchPageString = searchParams.get('page')
@@ -89,12 +89,12 @@ export const ResultsPage = () => {
                 </div>
             </article>
 
-            {/* <Pagination
+            <Pagination
                 currentPage={currentPage}
                 total={+SearchResult?.totalResults!}
                 limit={10}
                 onPageChange={onPageChangeHandler}
-            /> */}
+            />
 
         </section >
     )

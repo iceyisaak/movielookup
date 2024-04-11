@@ -88,19 +88,18 @@ export const Pagination = ({ currentPage, total, limit, onPageChange }: Paginati
 
     return (
         <article className="flex justify-center mt-40">
-            <ul className="flex">
+            <ul className="flex text-gray-500">
 
                 <LuChevronFirst
                     size={20}
                     onClick={getFirstPageHandler}
-                    className={``}
-                    disabled={isFirstPage}
+                    className={isFirstPage ? 'text-gray-800' : 'text-gray-500'}
                 />
 
                 <HiOutlineChevronLeft
                     size={20}
                     onClick={getPrevPageHandler}
-                    disabled={isFirstPage}
+                    className={isFirstPage ? 'text-gray-800' : 'text-gray-500'}
                 />
 
                 {pages.map((page) => (
@@ -115,14 +114,14 @@ export const Pagination = ({ currentPage, total, limit, onPageChange }: Paginati
                 <HiOutlineChevronRight
                     size={20}
                     onClick={getNextPageHandler}
-                    disabled={isLastPage}
+                    className={isLastPage ? 'text-gray-800' : 'text-gray-500'}
                 />
 
 
                 <LuChevronLast
                     size={20}
                     onClick={getLastPageHandler}
-                    disabled={isLastPage}
+                    className={isLastPage ? 'text-gray-800' : 'text-gray-500'}
                 />
 
 
