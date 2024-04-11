@@ -1,10 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Home } from '../pages/home';
-// import { ResultsLayout } from "./_layouts/_resultslayout";
 import { ResultsPage } from "../pages/results-page";
 import { MainLayout } from "../layouts/main-layout";
 import { DetailPage } from "../pages";
-// import { DetailPage } from "../pages/detail-page";
+import { WatchlistPage } from "../pages/watchlist-page";
 
 export const AppRouter = createBrowserRouter([
   {
@@ -12,7 +11,7 @@ export const AppRouter = createBrowserRouter([
     element: <Home />
   },
   {
-    path: '/results',
+    path: 'results',
     element: <MainLayout />,
     children: [
       {
@@ -32,6 +31,16 @@ export const AppRouter = createBrowserRouter([
       {
         index: true,
         element: <DetailPage />
+      }
+    ]
+  },
+  {
+    path: 'watchlist',
+    element: <MainLayout />,
+    children: [
+      {
+        index: true,
+        element: <WatchlistPage />
       }
     ]
   }
