@@ -21,10 +21,8 @@ export const ResultsPage = () => {
         setCurrentPage(page)
     }
 
-    console.log('SearchResults: ', SearchResult)
-
     useEffect(() => {
-        setCurrentPage(currentPage)
+        setCurrentPage(1)
     }, [searchTitleString])
 
 
