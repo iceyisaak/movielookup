@@ -10,7 +10,7 @@ export const Navbar = () => {
             <Link to='/'>
                 <div className="flex items-center">
                     <h1 className="text-5xl mb-5 text-yellow-300 flex pt-5 pl-2">
-                        Movie Lookup<RiMovie2Line />
+                        MovieLookup<RiMovie2Line />
                     </h1>
                 </div>
             </Link>
