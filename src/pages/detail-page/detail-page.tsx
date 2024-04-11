@@ -1,34 +1,63 @@
-import { useParams } from 'react-router-dom'
+import { IoArrowBackCircleOutline } from 'react-icons/io5'
+import { RiPlayListAddFill } from 'react-icons/ri'
+import { useNavigate, useParams } from 'react-router-dom'
 import { getCinemaDetail } from '../../apis/movie-api'
 
 
 export function DetailPage() {
+
     const { imdbID } = useParams()
+    const navigate = useNavigate()
+
     const { data: CinemaDetail } = getCinemaDetail(imdbID, 'full')
-    // console.log('CinemaDetail: ', CinemaDetail)
-    // const navigate = useNavigate()
+
+    console.log('CinemaDetail: ', CinemaDetail)
 
     return (
         <section className='mt-40 px-5 text-gray-300'>
-            {/* <button onClick={() => navigate(-1)}>
-        Back to Results
-      </button> */}
-
             <div className='
-                flex flex-col
+                flex
+                flex-col
                 items-center
+                lg:items-start
                 lg:flex-row
                 lg:justify-center
-                w-full flex-wrap
+                w-full
+                flex-wrap
             '>
-                <aside className='mb-20 lg:mb-0 px-5 flex items-center '>
+                <aside className='
+                mt-16
+                mb-20
+                lg:mb-0
+                px-5
+                flex
+                items-center
+                flex-col
+                w-full
+                lg:w-auto
+                '>
+                    <button
+                        onClick={() => navigate(-1)}
+                        className='flex items-center my-5'
+                    >
+                        <IoArrowBackCircleOutline size={20} /> <span className='ml-2'>Back to Results</span>
+                    </button>
                     <img
                         src={CinemaDetail?.Poster}
                         alt={CinemaDetail?.Title}
                         className=''
                     />
+                    <button className='flex flex-col items-center mt-4'>
+                        <RiPlayListAddFill size={20} /><span className='my-2'>Add to Watchlist</span>
+                    </button>
                 </aside>
-                <aside className='md:w-9/12 lg:w-6/12 px-6 py-10 '>
+                <aside
+                    className='
+                        md:w-9/12
+                        lg:w-6/12
+                        px-6
+                        py-10
+                    '>
                     <h1 className='text-5xl mb-6 font-extrabold'>
                         {CinemaDetail?.Title}
                     </h1>
@@ -45,36 +74,25 @@ export function DetailPage() {
                         <span className='font-bold text-xl'>Director(s):</span> {CinemaDetail?.Director}
                     </div>
                     <div className='text-xl mb-2'>
-                        <span className='font-bold text-xl'>Released Date:</span> {CinemaDetail?.Released}
-                    </div>
-                    {
-                        CinemaDetail?.Website === 'N/A' ? null :
-                            <div className='text-xl mb-2'>
-                                <span className='font-bold text-xl'>Website:</span> {CinemaDetail?.Website}
-                            </div>
-                    }
-                    <div className='text-xl mb-2'>
-                        <span className='font-bold text-xl'>Awards:</span> {CinemaDetail?.Awards}
-                    </div>
-                    <div className='text-xl mb-2'>
                         <span className='font-bold text-xl'>Writer(s):</span> {CinemaDetail?.Writer}
-                    </div>
-                    <div className='text-xl mb-2'>
-                        <span className='font-bold text-xl'>Rated:</span> {CinemaDetail?.Rated}
                     </div>
                     <div className='text-xl mb-2'>
                         <span className='font-bold text-xl'>Runtime:</span> {CinemaDetail?.Runtime}
                     </div>
+                    <div className='text-xl mb-2'>
+                        <span className='font-bold text-xl'>Released Date:</span> {CinemaDetail?.Released}
+                    </div>
 
                     <div className='text-xl mb-2'>
-                        <span className='font-bold text-xl'>Meta Score:</span> {CinemaDetail?.Metascore}
+                        <span className='font-bold text-xl'>Awards:</span> {CinemaDetail?.Awards}
                     </div>
+
+
+
                     <div className='text-xl mb-2'>
-                        <span className='font-bold text-xl'>Ratings Source:</span> {CinemaDetail?.Ratings[0].Source}
+                        <span className='font-bold text-xl'>Rated:</span> {CinemaDetail?.Rated}
                     </div>
-                    <div className='text-xl mb-2'>
-                        <span className='font-bold text-xl'>Ratings Earned:</span> {CinemaDetail?.Ratings[0].Value}
-                    </div>
+
                     {
                         CinemaDetail?.Production === 'N/A' ?
                             null :
@@ -93,6 +111,19 @@ export function DetailPage() {
                         {CinemaDetail?.Plot}
                     </div>
                     <div className='text-xl mb-2'>
+                        <span className='font-bold text-xl'>Meta Score:</span> {CinemaDetail?.Metascore}
+                    </div>
+                    <div className='text-xl mb-2'>
+                        <span className='font-bold text-xl'>Rating(s):</span> {CinemaDetail?.Ratings.map(
+                            (rating) => (
+                                <ul className='ml-6'>
+                                    <li className='text-xl mb-1'>
+                                        {rating.Source}: {rating.Value}
+                                    </li>
+                                </ul>
+                            ))}
+                    </div>
+                    <div className='text-xl mb-2'>
                         <span className='font-bold text-xl'>IMDb ID: </span> {CinemaDetail?.imdbID}
                     </div>
                     <div className='text-xl mb-2'>
@@ -101,6 +132,12 @@ export function DetailPage() {
                     <div className='text-xl mb-2'>
                         <span className='font-bold text-xl'>IMDb Vote: </span> {CinemaDetail?.imdbVotes}
                     </div>
+                    {
+                        CinemaDetail?.Website === 'N/A' ? null :
+                            <div className='text-xl mb-2'>
+                                <span className='font-bold text-xl'>Website:</span> {CinemaDetail?.Website}
+                            </div>
+                    }
                 </aside>
             </div>
 
