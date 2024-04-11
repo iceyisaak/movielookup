@@ -30,19 +30,19 @@ export const ResultsPage = () => {
 
     console.log('SearchResults: ', SearchResult)
 
-    type UseManageSearchParams = {
-        key: string,
-        value: string | null
-    }
-    const useManageSearchParams = ({ key, value }: UseManageSearchParams) => {
-        const sParams = new URLSearchParams(searchParams)
-        if (value === null) {
-            sParams.delete(key)
-        } else {
-            sParams.set(key, value)
-        }
-        return `?${sParams.toString()}`
-    }
+    // type UseManageSearchParams = {
+    //     key: string,
+    //     value: string | null
+    // }
+    // const useManageSearchParams = ({ key, value }: UseManageSearchParams) => {
+    //     const sParams = new URLSearchParams(searchParams)
+    //     if (value === null) {
+    //         sParams.delete(key)
+    //     } else {
+    //         sParams.set(key, value)
+    //     }
+    //     return `?${sParams.toString()}`
+    // }
 
 
     return (
@@ -65,11 +65,9 @@ export const ResultsPage = () => {
                         (cinema) => (
                             <Link
                                 key={cinema.imdbID}
-                                to={useManageSearchParams({
-                                    key: 'imdbID',
-                                    value: `${cinema.imdbID}`
-                                })}
-                                className="mx-2 my-2 bg-orange-300 w-80 relative">
+                                to={`/detail/${cinema.imdbID}`}
+                                className="mx-2 my-2 bg-orange-300 w-80 relative"
+                            >
                                 <div className="inline-flex">
                                     <img
                                         src={

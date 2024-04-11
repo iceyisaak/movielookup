@@ -1,9 +1,10 @@
-// import { getCinemaDetail } from '../../apis/movie-api'
+import { useParams } from 'react-router-dom'
+import { getCinemaDetail } from '../../apis/movie-api'
 
 
 export function DetailPage() {
-    // const { imdbID } = Route.useParams()
-    // const { data: CinemaDetail } = getCinemaDetail(imdbID, 'full')
+    const { imdbID } = useParams()
+    const { data: CinemaDetail } = getCinemaDetail(imdbID, 'full')
     // console.log('CinemaDetail: ', CinemaDetail)
     // const navigate = useNavigate()
 
