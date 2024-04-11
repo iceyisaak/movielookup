@@ -46,9 +46,9 @@ export const ResultsPage = () => {
 
 
     return (
-        <section className="w-screen bg-green-400 pt-32 pb-52">
+        <section className="w-screen pt-32 pb-52">
             <article className="mb-5 px-5">
-                <h2 className="text-4xl">
+                <h2 className="text-4xl text-gray-300">
                     Search Results for: "{searchTitleString ? searchTitleString : null}"
                 </h2>
                 <p>
