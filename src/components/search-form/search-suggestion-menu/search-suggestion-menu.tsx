@@ -19,8 +19,8 @@ export const SearchSuggestionMenu = ({ data, itemClickHandler }: SearchSuggestio
                     data.Search.map((cinema) => (
                         <Link
                             key={cinema.imdbID}
-                            // onMouseDown={itemClickHandler(`${cinema.Title}`)}
-                            to={`#`}
+                            onMouseDown={itemClickHandler(`/detail/${cinema.imdbID}`)}
+                            to={`/detail/${cinema.imdbID}`}
                             className="flex my-3"
                         >
                             <img

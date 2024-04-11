@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 import { createSearchParams, useNavigate } from "react-router-dom";
 import { getSearchCinema } from "../../apis/movie-api";
 import { SearchSuggestionMenu } from "./search-suggestion-menu";
@@ -10,7 +10,7 @@ import { SearchResult } from "../../types";
 
 export const SearchForm = () => {
 
-    // const inputRef = useRef(null)
+    const inputRef = useRef(null)
     const [searchInput, setSearchInput] = useState('')
     const [inputFocus, setInputFocus] = useState(false)
     const [showSuggestionMenu, setShowSuggestionMenu] = useState(false)
@@ -52,7 +52,7 @@ export const SearchForm = () => {
     }
 
     const itemClickHandler = (urlPath: string) => () => {
-        // navigate(urlPath)
+        navigate(urlPath)
         console.log('itemClickHandler(): ', urlPath)
     }
 
@@ -80,6 +80,7 @@ export const SearchForm = () => {
         >
             <div className="flex relative">
                 <input
+                    ref={inputRef}
                     name="searchTerm"
                     type="text"
                     className="

@@ -16,7 +16,9 @@ export const Navbar = () => {
                     <span className='text-4xl'>MovieLookup</span>
                 </div>
             </Link>
-            <RiPlayList2Fill size={30} />
+            <Link to='/watchlist'>
+                <RiPlayList2Fill size={30} />
+            </Link>
         </nav>
     )
 }
