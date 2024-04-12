@@ -25,6 +25,7 @@ export const ResultsPage = () => {
         setCurrentPage(1)
     }, [searchTitleString])
 
+    console.log('SearchResult: ', SearchResult)
 
     return (
         <section className="w-screen pt-32 pb-52">
