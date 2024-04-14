@@ -17,6 +17,8 @@ export const ResultsPage = () => {
     const [currentPage, setCurrentPage] = useState(+searchPageString!)
     const { data: SearchResult } = getSearchCinema(searchTitleString, +currentPage)
 
+    const [savedCinema, setSavedCinema] = useState([])
+
     const onPageChangeHandler = (page: number) => {
         setCurrentPage(page)
     }
@@ -24,6 +26,21 @@ export const ResultsPage = () => {
     useEffect(() => {
         setCurrentPage(1)
     }, [searchTitleString])
+
+
+    const saveToLocalStorage = (cinema: Cinema[]) => {
+        localStorage.setItem('movielookup_watchlist', JSON.stringify(cinema))
+    }
+
+
+    const onSaveCinemaHandler = (newCinema: Cinema) => {
+        const updatedWatchlist = [...savedCinema, newCinema]
+        saveToLocalStorage(updatedWatchlist)
+    }
+
+    const onRemoveCinemaHandler = (imdbID: string) => {
+
+    }
 
     console.log('SearchResult: ', SearchResult)
 
@@ -45,12 +62,16 @@ export const ResultsPage = () => {
                 '>
                     {SearchResult?.Search.map(
                         (cinema) => (
-                            <Link
+
+                            <div
                                 key={cinema.imdbID}
-                                to={`/detail/${cinema.imdbID}`}
                                 className="mx-2 my-2 bg-gray-900 w-80 relative rounded-lg"
                             >
-                                <div className="inline-flex">
+
+                                <Link
+                                    to={`/detail/${cinema.imdbID}`}
+                                    className="inline-flex"
+                                >
                                     <img
                                         src={
                                             cinema.Poster === 'N/A' ?
@@ -60,7 +81,7 @@ export const ResultsPage = () => {
                                         alt={cinema.Title}
                                         className='w-80 h-full'
                                     />
-                                </div>
+                                </Link>
                                 <div className="px-1 pb-5 relative">
                                     <div className="flex flex-wrap">
                                         <h1 className="text-3xl font-bold break-words text-gray-100">
@@ -75,11 +96,12 @@ export const ResultsPage = () => {
                                     </p>
                                 </div>
                                 <span className="absolute right-1 bottom-0 flex">
-                                    <MdPlaylistAdd size={20} />
+                                    <MdPlaylistAdd size={20} onClick={() => onSaveCinemaHandler(cinema)} />
                                     <PiCheckCircleThin size={20} />
                                 </span>
 
-                            </Link>
+                            </div>
+
                         ))
                     }
                 </div>
