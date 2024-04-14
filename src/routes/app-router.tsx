@@ -18,10 +18,6 @@ export const AppRouter = createBrowserRouter([
         index: true,
         element: <ResultsPage />
       }
-      // {
-      //   path: '/:imdbID',
-      //   element: <DetailPage />
-      // }
     ]
   },
   {
