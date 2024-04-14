@@ -1,8 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Home } from '../pages/home';
-import { ResultsPage } from "../pages/results-page";
 import { MainLayout } from "../layouts/main-layout";
 import { DetailPage } from "../pages";
+import { Home } from '../pages/home';
+import { ResultsPage } from "../pages/results-page";
 import { WatchlistPage } from "../pages/watchlist-page";
 
 export const AppRouter = createBrowserRouter([
