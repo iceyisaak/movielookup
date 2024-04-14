@@ -2,9 +2,9 @@ import { Link, useSearchParams } from "react-router-dom";
 import { getSearchCinema } from "../../apis/movie-api";
 
 import { useEffect, useState } from "react";
-import { MdPlaylistAdd } from "react-icons/md";
-import { PiCheckCircleThin } from "react-icons/pi";
+import { MdPlaylistAdd, MdPlaylistRemove } from "react-icons/md";
 import { Pagination } from "../../components/pagination";
+import { CinemaDetail } from "../../types";
 
 
 
@@ -17,7 +17,7 @@ export const ResultsPage = () => {
     const [currentPage, setCurrentPage] = useState(+searchPageString!)
     const { data: SearchResult } = getSearchCinema(searchTitleString, +currentPage)
 
-    const [savedCinema, setSavedCinema] = useState([])
+    const [savedCinema, setSavedCinema] = useState<CinemaDetail[]>([])
 
     const onPageChangeHandler = (page: number) => {
         setCurrentPage(page)
@@ -33,12 +33,30 @@ export const ResultsPage = () => {
     }
 
 
-    const onSaveCinemaHandler = (newCinema: Cinema) => {
+    const onSaveCinemaHandler = (newCinema: CinemaDetail) => {
         const updatedWatchlist = [...savedCinema, newCinema]
+        setSavedCinema(updatedWatchlist)
         saveToLocalStorage(updatedWatchlist)
     }
 
     const onRemoveCinemaHandler = (imdbID: string) => {
+
+    }
+
+    const isCinemaAdded = (imdbID?: string) => {
+
+        const storedCinema = localStorage.getItem('movielookup_watchlist') || '{}'
+        const cinema = JSON.parse(storedCinema)
+
+
+        console.log('cinema: ', cinema)
+
+        const filterMatchedItem = cinema.filter((i: any) => i.imdbId === imdbID)
+        // .map((i: any) => i.imdbID)
+        // const matchedItem = filterMatchedItem.map(imdbID)
+        console.log('filterMatchedItem: ', filterMatchedItem)
+        // console.log('matchedItem: ', matchedItem)
+
 
     }
 
@@ -96,8 +114,11 @@ export const ResultsPage = () => {
                                     </p>
                                 </div>
                                 <span className="absolute right-1 bottom-0 flex">
-                                    <MdPlaylistAdd size={20} onClick={() => onSaveCinemaHandler(cinema)} />
-                                    <PiCheckCircleThin size={20} />
+                                    {
+                                        isCinemaAdded(cinema.imdbID) ?
+                                            <MdPlaylistRemove size={20} /> :
+                                            <MdPlaylistAdd size={20} onClick={() => onSaveCinemaHandler(cinema)} />
+                                    }
                                 </span>
 
                             </div>
