@@ -4,7 +4,6 @@ import { getSearchCinema } from "../../apis/movie-api";
 import { useEffect, useState } from "react";
 import { MdPlaylistAdd, MdPlaylistRemove } from "react-icons/md";
 import { Pagination } from "../../components/pagination";
-import { CinemaDetail } from "../../types";
 
 
 
@@ -17,7 +16,7 @@ export const ResultsPage = () => {
     const [currentPage, setCurrentPage] = useState(+searchPageString!)
     const { data: SearchResult } = getSearchCinema(searchTitleString, +currentPage)
 
-    const [savedCinema, setSavedCinema] = useState<CinemaDetail[]>([])
+    const [savedCinema, setSavedCinema] = useState<Cinema[]>([])
 
     const onPageChangeHandler = (page: number) => {
         setCurrentPage(page)
@@ -33,7 +32,7 @@ export const ResultsPage = () => {
     }
 
 
-    const onSaveCinemaHandler = (newCinema: CinemaDetail) => {
+    const onSaveCinemaHandler = (newCinema: Cinema) => {
         const updatedWatchlist = [...savedCinema, newCinema]
         setSavedCinema(updatedWatchlist)
         saveToLocalStorage(updatedWatchlist)
@@ -43,20 +42,26 @@ export const ResultsPage = () => {
 
     }
 
-    const isCinemaAdded = (imdbID?: string) => {
+    const isCinemaAdded = (imdbID: string): boolean => {
 
         const storedCinema = localStorage.getItem('movielookup_watchlist') || '{}'
         const cinema = JSON.parse(storedCinema)
 
+        // console.log('cinema: ', cinema)
+        // const filterMatchedItem =
+        return cinema.filter((c: any) => {
 
-        console.log('cinema: ', cinema)
-
-        const filterMatchedItem = cinema.filter((i: any) => i.imdbId === imdbID)
-        // .map((i: any) => i.imdbID)
-        // const matchedItem = filterMatchedItem.map(imdbID)
-        console.log('filterMatchedItem: ', filterMatchedItem)
-        // console.log('matchedItem: ', matchedItem)
-
+            if (imdbID === c.imdbID) {
+                console.log('true:', c.imdbID)
+                return true
+            }
+            else {
+                console.log('false')
+                return false
+            }
+            // return c.imdbId !== imdbID
+        }
+        )
 
     }
 
@@ -116,7 +121,7 @@ export const ResultsPage = () => {
                                 <span className="absolute right-1 bottom-0 flex">
                                     {
                                         isCinemaAdded(cinema.imdbID) ?
-                                            <MdPlaylistRemove size={20} /> :
+                                            <MdPlaylistRemove size={20} onClick={() => onRemoveCinemaHandler(cinema.imdbID)} /> :
                                             <MdPlaylistAdd size={20} onClick={() => onSaveCinemaHandler(cinema)} />
                                     }
                                 </span>
