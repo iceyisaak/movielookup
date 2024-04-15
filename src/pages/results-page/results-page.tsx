@@ -44,23 +44,17 @@ export const ResultsPage = () => {
 
     const isCinemaAdded = (imdbID: string): boolean => {
 
-        const storedCinema = localStorage.getItem('movielookup_watchlist') || '{}'
+        const storedCinema = localStorage.getItem('movielookup_watchlist') || '[]'
         const cinema = JSON.parse(storedCinema)
 
         // console.log('cinema: ', cinema)
-        // const filterMatchedItem =
-        return cinema.filter((c: Cinema) => {
+        const filterMatchedItem = cinema.filter((c: Cinema) => { return imdbID === c.imdbID })
 
-            if (imdbID === c.imdbID) {
-                console.log('true:', c.imdbID)
-                return true
-            }
-            else {
-                console.log('false')
-                return false
-            }
-        })
-
+        if (filterMatchedItem.length > 0) {
+            return true
+        } else {
+            return false
+        }
     }
 
     console.log('SearchResult: ', SearchResult)
