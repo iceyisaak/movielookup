@@ -49,7 +49,7 @@ export const ResultsPage = () => {
 
         // console.log('cinema: ', cinema)
         // const filterMatchedItem =
-        return cinema.filter((c: any) => {
+        return cinema.filter((c: Cinema) => {
 
             if (imdbID === c.imdbID) {
                 console.log('true:', c.imdbID)
@@ -59,9 +59,7 @@ export const ResultsPage = () => {
                 console.log('false')
                 return false
             }
-            // return c.imdbId !== imdbID
-        }
-        )
+        })
 
     }
 
