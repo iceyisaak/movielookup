@@ -27,6 +27,12 @@ export const ResultsPage = () => {
     }, [searchTitleString])
 
 
+    // useEffect(() => {
+    //     const getSavedData = localStorage.getItem('movielookup_watchlist') || '[]'
+    //     setSavedCinema(getSavedData)
+    // }, [])
+
+
     const saveToLocalStorage = (cinema: Cinema[]) => {
         localStorage.setItem('movielookup_watchlist', JSON.stringify(cinema))
     }
@@ -113,8 +119,16 @@ export const ResultsPage = () => {
                                 <span className="absolute right-1 bottom-0 flex">
                                     {
                                         isCinemaAdded(cinema.imdbID) ?
-                                            <MdPlaylistRemove size={20} onClick={() => onRemoveCinemaHandler(cinema.imdbID)} /> :
-                                            <MdPlaylistAdd size={20} onClick={() => onSaveCinemaHandler(cinema)} />
+                                            <MdPlaylistRemove
+                                                size={20}
+                                                onClick={() => onRemoveCinemaHandler(cinema.imdbID)}
+                                                className="text-gray-300"
+                                            /> :
+                                            <MdPlaylistAdd
+                                                size={20}
+                                                onClick={() => onSaveCinemaHandler(cinema)}
+                                                className="text-gray-300"
+                                            />
                                     }
                                 </span>
 
