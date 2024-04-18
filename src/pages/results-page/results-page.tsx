@@ -66,7 +66,7 @@ export const ResultsPage = () => {
     console.log('SearchResult: ', SearchResult)
 
     return (
-        <section className="w-screen pt-32 pb-52">
+        <section className="pt-32 pb-52">
             <article className="mb-5 px-5">
                 <h2 className="text-4xl text-gray-300 mb-1">
                     Search Results for: "{searchTitleString ? searchTitleString : null}"

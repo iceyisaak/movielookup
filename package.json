@@ -13,6 +13,7 @@
     "@tanstack/react-query": "^5.8.6",
     "axios": "^1.6.2",
     "classnames": "^2.3.2",
+    "jotai": "^2.8.0",
     "react": "^19.0.0-canary-48ec17b86-20240402",
     "react-dom": "^19.0.0-canary-48ec17b86-20240402",
     "react-icons": "^4.12.0",
