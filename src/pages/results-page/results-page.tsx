@@ -16,7 +16,7 @@ export const ResultsPage = () => {
     const [currentPage, setCurrentPage] = useState(+searchPageString!)
     const { data: SearchResult } = getSearchCinema(searchTitleString, +currentPage)
 
-    const [savedCinema, setSavedCinema] = useState<Cinema[]>([])
+    const [cinema, setCinema] = useState<Cinema[]>([])
 
     const onPageChangeHandler = (page: number) => {
         setCurrentPage(page)
@@ -26,11 +26,26 @@ export const ResultsPage = () => {
         setCurrentPage(1)
     }, [searchTitleString])
 
+    useEffect(() => {
+        fetchedSavedCinema()
+    }, [])
+
 
     // useEffect(() => {
+
     //     const getSavedData = localStorage.getItem('movielookup_watchlist') || '[]'
-    //     setSavedCinema(getSavedData)
+    //     if (getSavedData !== []) {
+    //         setSavedCinema(getSavedData)
+    //     }
     // }, [])
+
+
+    const fetchedSavedCinema = () => {
+        const savedCinema = localStorage.getItem("todo-list")
+        if (savedCinema) {
+            setCinema(JSON.parse(savedCinema))
+        }
+    }
 
 
     const saveToLocalStorage = (cinema: Cinema[]) => {
@@ -39,8 +54,8 @@ export const ResultsPage = () => {
 
 
     const onSaveCinemaHandler = (newCinema: Cinema) => {
-        const updatedWatchlist = [...savedCinema, newCinema]
-        setSavedCinema(updatedWatchlist)
+        const updatedWatchlist = [...cinema, newCinema]
+        setCinema(updatedWatchlist)
         saveToLocalStorage(updatedWatchlist)
     }
 
