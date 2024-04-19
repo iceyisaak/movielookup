@@ -1,14 +1,23 @@
 import { Link, useSearchParams } from "react-router-dom";
 import { getSearchCinema } from "../../apis/movie-api";
 
+import { useAtom } from "jotai";
 import { useEffect, useState } from "react";
 import { MdPlaylistAdd, MdPlaylistRemove } from "react-icons/md";
 import { Pagination } from "../../components/pagination";
+import { checkCinemaAddedAtom, isCinemaAddedAtom } from "../../features/watchlist/watchlist-initialstate";
+import { getCinemaInfoAtom } from "../../features/watchlist/watchlist-store";
 
 
 
 
 export const ResultsPage = () => {
+
+    const [, getCinemaInfo] = useAtom(getCinemaInfoAtom)
+    const [isCinemaAdded] = useAtom(isCinemaAddedAtom)
+    // const [, checkCinemaAdded] = useAtom(checkCinemaAddedAtom)
+
+
 
     const [searchParams, _setSearchParams] = useSearchParams()
     const searchTitleString = searchParams.get('title')?.toString()
@@ -16,52 +25,58 @@ export const ResultsPage = () => {
     const [currentPage, setCurrentPage] = useState(+searchPageString!)
     const { data: SearchResult } = getSearchCinema(searchTitleString, +currentPage)
 
-    const [savedCinema, setSavedCinema] = useState<Cinema[]>([])
+    // const [savedCinema, setSavedCinema] = useState<Cinema[]>([])
 
     const onPageChangeHandler = (page: number) => {
         setCurrentPage(page)
     }
 
     useEffect(() => {
+        // setCinemaInfo(undefined)
         setCurrentPage(1)
     }, [searchTitleString])
 
 
-    // useEffect(() => {
-    //     const getSavedData = localStorage.getItem('movielookup_watchlist') || '[]'
-    //     setSavedCinema(getSavedData)
-    // }, [])
 
-
-    const saveToLocalStorage = (cinema: Cinema[]) => {
-        localStorage.setItem('movielookup_watchlist', JSON.stringify(cinema))
-    }
+    // const saveToLocalStorage = (cinema: Cinema[]) => {
+    //     localStorage.setItem('movielookup_watchlist', JSON.stringify(cinema))
+    // }
 
 
     const onSaveCinemaHandler = (newCinema: Cinema) => {
-        const updatedWatchlist = [...savedCinema, newCinema]
-        setSavedCinema(updatedWatchlist)
-        saveToLocalStorage(updatedWatchlist)
+        // const updatedWatchlist = [...savedCinema, newCinema]
+        // setSavedCinema(updatedWatchlist)
+        // saveToLocalStorage(updatedWatchlist)
+        getCinemaInfo(newCinema)
     }
 
     const onRemoveCinemaHandler = (imdbID: string) => {
 
     }
 
-    const isCinemaAdded = (imdbID: string): boolean => {
+    // const isAdded = (imdbID: string) => {
 
-        const storedCinema = localStorage.getItem('movielookup_watchlist') || '[]'
-        const cinema = JSON.parse(storedCinema)
+    //     checkCinemaAdded(imdbID)
 
-        // console.log('cinema: ', cinema)
-        const filterMatchedItem = cinema.filter((c: Cinema) => { return imdbID === c.imdbID })
+    //     return isCinemaAdded
+    // }
 
-        if (filterMatchedItem.length > 0) {
-            return true
-        } else {
-            return false
-        }
-    }
+
+
+    // const isCinemaAdded = (imdbID: string): boolean => {
+
+    //     const storedCinema = localStorage.getItem('movielookup_watchlist') || '[]'
+    //     const cinema = JSON.parse(storedCinema)
+
+    //     // console.log('cinema: ', cinema)
+    //     const filterMatchedItem = cinema.filter((c: Cinema) => { return imdbID === c.imdbID })
+
+    //     if (filterMatchedItem.length > 0) {
+    //         return true
+    //     } else {
+    //         return false
+    //     }
+    // }
 
     console.log('SearchResult: ', SearchResult)
 
