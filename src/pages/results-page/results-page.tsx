@@ -2,8 +2,13 @@ import { Link, useSearchParams } from "react-router-dom";
 import { getSearchCinema } from "../../apis/movie-api";
 
 import { useEffect, useState } from "react";
+import { IoReturnDownBack } from "react-icons/io5";
 import { MdPlaylistAdd, MdPlaylistRemove } from "react-icons/md";
 import { Pagination } from "../../components/pagination";
+
+
+
+
 
 
 
@@ -18,34 +23,16 @@ export const ResultsPage = () => {
 
     const [cinema, setCinema] = useState<Cinema[]>([])
 
+
+
+
     const onPageChangeHandler = (page: number) => {
         setCurrentPage(page)
     }
 
-    useEffect(() => {
-        setCurrentPage(1)
-    }, [searchTitleString])
-
-    useEffect(() => {
-        fetchedSavedCinema()
-    }, [])
 
 
-    // useEffect(() => {
 
-    //     const getSavedData = localStorage.getItem('movielookup_watchlist') || '[]'
-    //     if (getSavedData !== []) {
-    //         setSavedCinema(getSavedData)
-    //     }
-    // }, [])
-
-
-    const fetchedSavedCinema = () => {
-        const savedCinema = localStorage.getItem("todo-list")
-        if (savedCinema) {
-            setCinema(JSON.parse(savedCinema))
-        }
-    }
 
 
     const saveToLocalStorage = (cinema: Cinema[]) => {
@@ -53,14 +40,20 @@ export const ResultsPage = () => {
     }
 
 
-    const onSaveCinemaHandler = (newCinema: Cinema) => {
-        const updatedWatchlist = [...cinema, newCinema]
+    const addCinema = (cinemaToAdd: Cinema) => {
+        const updatedWatchlist = [...cinema, cinemaToAdd]
         setCinema(updatedWatchlist)
         saveToLocalStorage(updatedWatchlist)
     }
 
-    const onRemoveCinemaHandler = (imdbID: string) => {
-
+    const removeCinema = (cinemaToRemove: Cinema) => {
+        const filterOutDeletedCinema = cinema.filter(
+            (c) => {
+                return c.imdbID !== cinemaToRemove.imdbID
+            }
+        )
+        setCinema(filterOutDeletedCinema)
+        localStorage.setItem("movielookup_watchlist", JSON.stringify(filterOutDeletedCinema))
     }
 
     const isCinemaAdded = (imdbID: string): boolean => {
@@ -78,7 +71,29 @@ export const ResultsPage = () => {
         }
     }
 
+    const fetchedSavedCinema = () => {
+        const savedCinema = localStorage.getItem("movielookup_watchlist")
+        if (savedCinema) {
+            setCinema(JSON.parse(savedCinema))
+            IoReturnDownBack
+        }
+    }
+
+
+    useEffect(() => {
+        setCurrentPage(1)
+    }, [searchTitleString, setCurrentPage])
+
+    useEffect(() => {
+
+
+        fetchedSavedCinema()
+    }, [])
+
     console.log('SearchResult: ', SearchResult)
+
+
+
 
     return (
         <section className="pt-32 pb-52">
@@ -136,12 +151,12 @@ export const ResultsPage = () => {
                                         isCinemaAdded(cinema.imdbID) ?
                                             <MdPlaylistRemove
                                                 size={20}
-                                                onClick={() => onRemoveCinemaHandler(cinema.imdbID)}
+                                                onClick={() => removeCinema(cinema)}
                                                 className="text-gray-300"
                                             /> :
                                             <MdPlaylistAdd
                                                 size={20}
-                                                onClick={() => onSaveCinemaHandler(cinema)}
+                                                onClick={() => addCinema(cinema)}
                                                 className="text-gray-300"
                                             />
                                     }
