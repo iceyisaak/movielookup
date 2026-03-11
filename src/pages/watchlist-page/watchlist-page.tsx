@@ -1,6 +1,7 @@
 import { useWatchlistStore } from "../../features/store/watchlist-store";
 import { useQueries } from "@tanstack/react-query";
 import { fetchCinemaDetail } from "../../apis/movie-api";
+// import { Pagination } from "../../components/pagination";
 
 export function WatchlistPage() {
   const { ids } = useWatchlistStore();
@@ -17,9 +18,6 @@ export function WatchlistPage() {
       <div className="">
         <article className="mb-5 px-5 text-center">
           <h2 className="text-6xl mb-7 font-extrabold">Watchlist</h2>
-          <p className="text-gray-300 mb-20">
-            {/* Found: {SearchResult?.totalResults} Cinema(s) */}
-          </p>
         </article>
         <article className="flex justify-center">
           <div

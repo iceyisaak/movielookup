@@ -48,9 +48,9 @@ export const ResultsPage = () => {
             <Link
               key={cinema.imdbID}
               to={`/detail/${cinema.imdbID}`}
-              className="mx-2 my-2 bg-gray-900 relative rounded-lg w-96"
+              className="mx-2 my-2 bg-gray-900 relative rounded-lg w-108 flex flex-col"
             >
-              <div className="inline-flex">
+              <div className="inline-flex h-full overflow-hidden">
                 <img
                   src={
                     cinema.Poster === "N/A"
@@ -58,14 +58,14 @@ export const ResultsPage = () => {
                       : cinema.Poster
                   }
                   alt={cinema.Title}
-                  className="w-96 h-full"
+                  className="w-108 h-full object-cover"
                   onError={(e) => {
                     e.currentTarget.src =
                       "https://placehold.co/90x135?text=N/A";
                   }}
                 />
               </div>
-              <div className="px-1 pb-5 relative">
+              <div className="px-1 pb-5 relative flex-1">
                 <div className="flex flex-wrap">
                   <h1 className="text-3xl font-bold break-words text-gray-100">
                     {cinema.Title}
