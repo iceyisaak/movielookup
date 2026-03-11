@@ -1,5 +1,5 @@
 import { Link, useSearchParams } from "react-router-dom";
-import { getCinemaDetail, getSearchCinema } from "../../apis/movie-api";
+import { getSearchCinema } from "../../apis/movie-api";
 
 import { useEffect, useState } from "react";
 import { MdPlaylistAdd, MdPlaylistRemove } from "react-icons/md";
