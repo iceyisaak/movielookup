@@ -42,9 +42,12 @@ export const ResultsPage = () => {
 
       <article className="flex justify-center">
         <div
+          //   className="flex flex-wrap justify-center
+          //         w-[auto]
+          //         sm:w-[120rem]
+          //         "
           className="flex flex-wrap justify-center
-                w-[auto]
-                sm:w-[120rem]
+               
                 "
         >
           {!SearchResult?.Search?.length && searchTitleString && (

@@ -47,20 +47,10 @@ export function WatchlistPage() {
         </p>
       </article>
       <article className="flex justify-center">
-        <div
-          className="flex flex-wrap justify-center
-                        w-[auto]
-                        sm:w-[120rem]
-                        "
-        >
+        <div className="flex flex-wrap justify-center">
           {ids.length > 0 ? (
             <article className="flex justify-center">
-              <div
-                className="flex flex-wrap justify-center
-                w-[auto]
-                sm:w-[120rem]
-                "
-              >
+              <div className="flex flex-wrap justify-center">
                 {results.map((result, index) => {
                   if (!result.isSuccess) return null;
                   const cinema = result.data;
