@@ -6,6 +6,7 @@ interface WatchlistStore {
   add: (id: string) => void;
   remove: (id: string) => void;
   has: (id: string) => boolean;
+  removeAll: () => void;
 }
 
 export const useWatchlistStore = create<WatchlistStore>()(
@@ -15,6 +16,7 @@ export const useWatchlistStore = create<WatchlistStore>()(
       add: (id) => set((s) => ({ ids: [...s.ids, id] })),
       remove: (id) => set((s) => ({ ids: s.ids.filter((i) => i !== id) })),
       has: (id) => get().ids.includes(id),
+      removeAll: () => set({ ids: [] }),
     }),
     { name: "watchlist" }, // persists to localStorage automatically
   ),

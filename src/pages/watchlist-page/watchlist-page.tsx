@@ -6,15 +6,22 @@ import { MdOutlinePlayCircle } from "react-icons/md";
 import { TbMovieOff } from "react-icons/tb";
 import { MdPlaylistRemove } from "react-icons/md";
 import { Pagination } from "../../components/pagination";
+import { SlClose } from "react-icons/sl";
+
 import { useEffect, useState } from "react";
 
 export function WatchlistPage() {
   const { ids } = useWatchlistStore();
-  const { remove } = useWatchlistStore();
+  const { remove, removeAll } = useWatchlistStore();
   const [currentPage, setCurrentPage] = useState(1);
 
   const onPageChangeHandler = (page: number) => {
     setCurrentPage(page);
+  };
+
+  const clearWatchlistHandler = () => {
+    confirm("Are you sure you want to clear the Watchlist?");
+    removeAll();
   };
 
   useEffect(() => {
@@ -109,18 +116,30 @@ export function WatchlistPage() {
             </article>
           ) : (
             <div className="flex flex-col items-center">
-              <h3 className="text-3xl">Watchlist is Empty</h3>
+              <h3 className="text-3xl mb-3">Watchlist is Empty</h3>
               <TbMovieOff size={50} />
             </div>
           )}
         </div>
       </article>
-      <Pagination
-        currentPage={currentPage}
-        total={ids.length}
-        limit={10}
-        onPageChange={onPageChangeHandler}
-      />
+
+      {ids.length > 0 && (
+        <button
+          onClick={() => clearWatchlistHandler()}
+          className="absolute top-24 right-3 flex flex-col items-center gap-2"
+        >
+          <SlClose size={30} className="text-gray-600" />
+        </button>
+      )}
+
+      {ids.length > 0 && (
+        <Pagination
+          currentPage={currentPage}
+          total={ids.length}
+          limit={10}
+          onPageChange={onPageChangeHandler}
+        />
+      )}
     </section>
   );
 }
