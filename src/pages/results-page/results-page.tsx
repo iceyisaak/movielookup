@@ -44,7 +44,12 @@ export const ResultsPage = () => {
                 sm:w-[120rem]
                 "
         >
-          {SearchResult?.Search.map((cinema) => (
+          {!SearchResult?.Search?.length && searchTitleString && (
+            <p className="text-gray-400 text-xl mt-10">
+              No results found for "{searchTitleString}"
+            </p>
+          )}
+          {SearchResult?.Search?.map((cinema) => (
             <Link
               key={cinema.imdbID}
               to={`/detail/${cinema.imdbID}`}
