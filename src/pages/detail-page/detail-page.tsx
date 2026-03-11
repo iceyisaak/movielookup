@@ -1,11 +1,14 @@
 import { IoArrowBackCircleOutline } from "react-icons/io5";
-import { RiPlayListAddFill } from "react-icons/ri";
+import { MdPlaylistAdd, MdPlaylistRemove } from "react-icons/md";
 import { useNavigate, useParams } from "react-router-dom";
 import { getCinemaDetail } from "../../apis/movie-api";
+import { useWatchlistStore } from "../../features/store/watchlist-store";
 
 export function DetailPage() {
   const { imdbID } = useParams();
   const navigate = useNavigate();
+  const { add, remove, has } = useWatchlistStore();
+  const saved = has(imdbID!);
 
   const { data: CinemaDetail } = getCinemaDetail(imdbID, "full");
 
@@ -42,17 +45,29 @@ export function DetailPage() {
             onClick={() => navigate(-1)}
             className="flex items-center my-5"
           >
-            <IoArrowBackCircleOutline size={20} />{" "}
-            <span className="ml-2">Back to Results</span>
+            <IoArrowBackCircleOutline size={30} />{" "}
+            <span className="ml-2 text-xl">Back</span>
           </button>
           <img
             src={CinemaDetail?.Poster}
             alt={CinemaDetail?.Title}
             title={CinemaDetail?.Title}
           />
-          <button className="flex flex-col items-center mt-4">
-            <RiPlayListAddFill size={20} />
-            <span className="my-2">Add to Watchlist</span>
+          <button
+            className="flex flex-col items-center mt-4"
+            onClick={() => (saved ? remove(imdbID!) : add(imdbID!))}
+          >
+            {saved ? (
+              <>
+                <MdPlaylistRemove size={30} />
+                <span className="my-2 text-xl">Watchlist</span>
+              </>
+            ) : (
+              <>
+                <MdPlaylistAdd size={30} />
+                <span className="my-2 text-xl">Watchlist</span>
+              </>
+            )}
           </button>
         </aside>
         <aside
