@@ -3,13 +3,13 @@ import { useQueries } from "@tanstack/react-query";
 import { fetchCinemaDetail } from "../../apis/movie-api";
 import { Link } from "react-router-dom";
 import { MdOutlinePlayCircle } from "react-icons/md";
-// import { Pagination } from "../../components/pagination";
-import { MdPlaylistAdd } from "react-icons/md";
 import { PiCheckCircleThin } from "react-icons/pi";
 import { TbMovieOff } from "react-icons/tb";
+import { MdPlaylistRemove } from "react-icons/md";
 
 export function WatchlistPage() {
   const { ids } = useWatchlistStore();
+  const { remove } = useWatchlistStore();
 
   const results = useQueries({
     queries: ids.map((id) => ({
@@ -47,6 +47,7 @@ export function WatchlistPage() {
                 {results.map((result, index) => {
                   if (!result.isSuccess) return null;
                   const cinema = result.data;
+                  const imdbID = cinema.imdbID;
                   return (
                     <Link
                       key={index}
@@ -74,14 +75,22 @@ export function WatchlistPage() {
                             {cinema.Title}
                           </h1>
                         </div>
-                        <p className="uppercase text-l text-gray-100">
+                        <p className="uppercase text-xl text-gray-100">
                           {cinema.Type}
                         </p>
-                        <p className="text-gray-300">{cinema.Year}</p>
+                        <p className="text-gray-300 text-xl">{cinema.Year}</p>
                       </div>
                       <span className="absolute right-1 bottom-0 flex">
-                        <MdPlaylistAdd size={20} />
-                        <PiCheckCircleThin size={20} />
+                        {
+                          <button
+                            onClick={(e) => {
+                              e.preventDefault();
+                              remove(imdbID!);
+                            }}
+                          >
+                            <MdPlaylistRemove size={30} />
+                          </button>
+                        }
                       </span>
                     </Link>
                   );
