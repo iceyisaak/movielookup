@@ -5,10 +5,21 @@ import { Link } from "react-router-dom";
 import { MdOutlinePlayCircle } from "react-icons/md";
 import { TbMovieOff } from "react-icons/tb";
 import { MdPlaylistRemove } from "react-icons/md";
+import { Pagination } from "../../components/pagination";
+import { useEffect, useState } from "react";
 
 export function WatchlistPage() {
   const { ids } = useWatchlistStore();
   const { remove } = useWatchlistStore();
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const onPageChangeHandler = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, []);
 
   const results = useQueries({
     queries: ids.map((id) => ({
@@ -38,7 +49,7 @@ export function WatchlistPage() {
           {ids.length > 0 ? (
             <article className="flex justify-center">
               <div
-                className="flex flex-wrap 
+                className="flex flex-wrap justify-center
                 w-[auto]
                 sm:w-[120rem]
                 "
@@ -104,6 +115,12 @@ export function WatchlistPage() {
           )}
         </div>
       </article>
+      <Pagination
+        currentPage={currentPage}
+        total={ids.length}
+        limit={10}
+        onPageChange={onPageChangeHandler}
+      />
     </section>
   );
 }
