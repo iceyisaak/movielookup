@@ -29,10 +29,10 @@ export const ResultsPage = () => {
   return (
     <section className="w-screen pt-32 pb-52">
       <article className="mb-5 px-5 text-center">
-        <h2 className="text-4xl text-gray-300 mb-1">
+        <h2 className="text-6xl mb-7 font-extrabold">
           Search Results for: "{searchTitleString ? searchTitleString : null}"
         </h2>
-        <p className="text-gray-300 mb-20">
+        <p className="text-gray-300 mb-20 text-3xl">
           Found: {SearchResult?.totalResults} Cinema(s)
         </p>
       </article>
@@ -76,8 +76,10 @@ export const ResultsPage = () => {
                     {cinema.Title}
                   </h1>
                 </div>
-                <p className="uppercase text-l text-gray-100">{cinema.Type}</p>
-                <p className="text-gray-300">{cinema.Year}</p>
+                <p className="uppercase text-l text-gray-100 text-xl">
+                  {cinema.Type}
+                </p>
+                <p className="text-gray-300 text-xl">{cinema.Year}</p>
               </div>
               <span className="absolute right-1 bottom-0 flex">
                 <MdPlaylistAdd size={20} />

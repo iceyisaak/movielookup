@@ -52,6 +52,10 @@ export function DetailPage() {
             src={CinemaDetail?.Poster}
             alt={CinemaDetail?.Title}
             title={CinemaDetail?.Title}
+            onError={(e) => {
+              e.currentTarget.src = "https://placehold.co/90x135?text=N/A";
+            }}
+            className="w-108 h-full object-cover"
           />
           <button
             className="flex flex-col items-center mt-4"
