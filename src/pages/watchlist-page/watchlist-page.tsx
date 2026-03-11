@@ -8,30 +8,46 @@ export function WatchlistPage() {
   const results = useQueries({
     queries: ids.map((id) => ({
       queryKey: ["cinema", id],
-      queryFn: () => fetchCinemaDetail(id, "short"), // 👈 raw function, not the hook
+      queryFn: () => fetchCinemaDetail(id, "short"),
     })),
   });
 
   return (
     <section className="mt-40 px-5 text-gray-300">
       <div className="">
-        <h1 className="text-6xl mb-7 font-extrabold">Watchlist</h1>
-        <div>
-          {ids.length > 0 ? (
-            <div className="grid grid-cols-4 gap-4">
-              {results.map((result, index) => {
-                if (!result.isSuccess) return null;
-                const movie = result.data;
-                return (
-                  <img key={ids[index]} src={movie.Poster} alt={movie.Title} />
-                );
-              })}
-            </div>
-          ) : (
-            <h3 className="text-3xl">Watchlist is Empty</h3>
-          )}
-        </div>
-        <div></div>
+        <article className="mb-5 px-5 text-center">
+          <h2 className="text-6xl mb-7 font-extrabold">Watchlist</h2>
+          <p className="text-gray-300 mb-20">
+            {/* Found: {SearchResult?.totalResults} Cinema(s) */}
+          </p>
+        </article>
+        <article className="flex justify-center">
+          <div
+            className="flex flex-wrap justify-center
+                        w-[auto]
+                        sm:w-[120rem]
+                        "
+          >
+            {ids.length > 0 ? (
+              <div className="grid grid-cols-4 gap-4">
+                {results.map((result, index) => {
+                  if (!result.isSuccess) return null;
+                  const movie = result.data;
+                  return (
+                    <img
+                      key={ids[index]}
+                      src={movie.Poster}
+                      alt={movie.Title}
+                    />
+                  );
+                })}
+              </div>
+            ) : (
+              <h3 className="text-3xl">Watchlist is Empty</h3>
+            )}
+          </div>
+          <div></div>
+        </article>
       </div>
     </section>
   );

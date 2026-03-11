@@ -48,7 +48,7 @@ export const ResultsPage = () => {
             <Link
               key={cinema.imdbID}
               to={`/detail/${cinema.imdbID}`}
-              className="mx-2 my-2 bg-gray-900 relative rounded-lg"
+              className="mx-2 my-2 bg-gray-900 relative rounded-lg w-96"
             >
               <div className="inline-flex">
                 <img
@@ -58,7 +58,11 @@ export const ResultsPage = () => {
                       : cinema.Poster
                   }
                   alt={cinema.Title}
-                  className="h-full"
+                  className="w-96 h-full"
+                  onError={(e) => {
+                    e.currentTarget.src =
+                      "https://placehold.co/90x135?text=N/A";
+                  }}
                 />
               </div>
               <div className="px-1 pb-5 relative">
