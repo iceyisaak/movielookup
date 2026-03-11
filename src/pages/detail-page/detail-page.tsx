@@ -9,7 +9,7 @@ export function DetailPage() {
 
   const { data: CinemaDetail } = getCinemaDetail(imdbID, "full");
 
-  // console.log('CinemaDetail: ', CinemaDetail)
+  console.log("CinemaDetail: ", CinemaDetail);
 
   return (
     <section className="mt-40 px-5 text-gray-300">
@@ -149,7 +149,7 @@ export function DetailPage() {
           <div className="text-3xl mb-4">
             <span className="font-bold text-3xl">Rating(s):</span>{" "}
             {CinemaDetail?.Ratings.map((rating) => (
-              <ul className="ml-9 list-disc">
+              <ul className="ml-9 list-disc" key={rating.Source}>
                 <li className="text-3xl mb-1">
                   {rating.Source}: {rating.Value}
                 </li>
