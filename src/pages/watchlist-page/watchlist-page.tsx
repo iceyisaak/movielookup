@@ -3,7 +3,6 @@ import { useQueries } from "@tanstack/react-query";
 import { fetchCinemaDetail } from "../../apis/movie-api";
 import { Link } from "react-router-dom";
 import { MdOutlinePlayCircle } from "react-icons/md";
-import { PiCheckCircleThin } from "react-icons/pi";
 import { TbMovieOff } from "react-icons/tb";
 import { MdPlaylistRemove } from "react-icons/md";
 
@@ -104,7 +103,6 @@ export function WatchlistPage() {
             </div>
           )}
         </div>
-        <div></div>
       </article>
     </section>
   );
