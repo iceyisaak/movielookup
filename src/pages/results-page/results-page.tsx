@@ -29,7 +29,7 @@ export const ResultsPage = () => {
   return (
     <section className="w-screen pt-32 pb-52">
       <article className="mb-5 px-5 text-center">
-        <h2 className="text-6xl mb-7 font-extrabold">
+        <h2 className="text-gray-300 text-6xl mb-7 font-extrabold">
           Search Results for: "{searchTitleString ? searchTitleString : null}"
         </h2>
         <p className="text-gray-300 mb-20 text-3xl">
