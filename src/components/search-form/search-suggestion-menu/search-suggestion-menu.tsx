@@ -15,7 +15,7 @@ export const SearchSuggestionMenu = ({
 }: SearchSuggestionMenu) => {
   return (
     <article
-      className={`w-full absolute bg-gray-200 h-96 mt-16 overflow-y-scroll pt-1 pb-1 px-2`}
+      className={`w-full absolute bg-gray-200 h-96 mt-16 overflow-y-auto pt-1 pb-1 px-2`}
     >
       {data && "Search" in data && data.Search.length > 0 ? (
         data.Search.map((cinema) => (
@@ -45,7 +45,7 @@ export const SearchSuggestionMenu = ({
           </Link>
         ))
       ) : (
-        <p>No Matching Results</p>
+        <p className="text-2xl">No Matching Results</p>
       )}
     </article>
   );
