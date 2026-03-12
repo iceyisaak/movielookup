@@ -21,8 +21,9 @@ export function WatchlistPage() {
   };
 
   const clearWatchlistHandler = () => {
-    confirm("Are you sure you want to clear the Watchlist?");
-    removeAll();
+    if (confirm("Are you sure you want to clear the Watchlist?")) {
+      removeAll();
+    }
   };
 
   useEffect(() => {
