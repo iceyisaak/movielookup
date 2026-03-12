@@ -14,6 +14,7 @@ export function WatchlistPage() {
   const { ids } = useWatchlistStore();
   const { remove, removeAll } = useWatchlistStore();
   const [currentPage, setCurrentPage] = useState(1);
+  const LIMIT = 10;
 
   const onPageChangeHandler = (page: number) => {
     setCurrentPage(page);
@@ -28,8 +29,14 @@ export function WatchlistPage() {
     setCurrentPage(1);
   }, []);
 
+  // Slice ids based on current page BEFORE passing to useQueries
+  const paginatedIds = ids.slice(
+    (currentPage - 1) * LIMIT,
+    currentPage * LIMIT,
+  );
+
   const results = useQueries({
-    queries: ids.map((id) => ({
+    queries: paginatedIds.map((id) => ({
       queryKey: ["cinema", id],
       queryFn: () => fetchCinemaDetail(id, "short"),
     })),
@@ -126,7 +133,7 @@ export function WatchlistPage() {
         <Pagination
           currentPage={currentPage}
           total={ids.length}
-          limit={10}
+          limit={LIMIT}
           onPageChange={onPageChangeHandler}
         />
       )}

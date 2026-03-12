@@ -17,7 +17,6 @@ export const ResultsPage = () => {
     +currentPage,
   );
   const { add, remove, has } = useWatchlistStore();
-  //   const saved = has(cinema.imdbID!);
 
   const onPageChangeHandler = (page: number) => {
     setCurrentPage(page);
