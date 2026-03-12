@@ -12,8 +12,6 @@ export function DetailPage() {
 
   const { data: CinemaDetail } = getCinemaDetail(imdbID, "full");
 
-  console.log("CinemaDetail: ", CinemaDetail);
-
   return (
     <section className="mt-40 px-5 text-gray-300">
       <div
