@@ -41,15 +41,7 @@ export const ResultsPage = () => {
       </article>
 
       <article className="flex justify-center">
-        <div
-          //   className="flex flex-wrap justify-center
-          //         w-[auto]
-          //         sm:w-[120rem]
-          //         "
-          className="flex flex-wrap justify-center
-               
-                "
-        >
+        <div className="flex flex-wrap justify-center">
           {!SearchResult?.Search?.length && searchTitleString && (
             <p className="text-gray-400 text-xl mt-10">
               No results found for "{searchTitleString}"
