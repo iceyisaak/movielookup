@@ -82,8 +82,6 @@ export const ResultsPage = () => {
                   <p className="text-gray-300 text-xl">{cinema.Year}</p>
                 </div>
                 <span className="absolute right-1 bottom-0 flex">
-                  {/* <MdPlaylistAdd size={20} />
-                <PiCheckCircleThin size={20} /> */}
                   <button
                     className="flex flex-col items-center mt-4"
                     onClick={(e) => {
